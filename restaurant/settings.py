@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
     'polish-restaurant1.herokuapp.com',
     'localhost',
     'polish-restaurant1-c6e01ddf2452.herokuapp.com',
+    '127.0.0.1',
 ]
 
 
