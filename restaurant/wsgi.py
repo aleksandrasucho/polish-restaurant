@@ -13,4 +13,7 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'restaurant.settings')
 
+# Get the port from the environment variable or use 8000 as a default
+port = int(os.environ.get("PORT", 8000))
+
 application = get_wsgi_application()
