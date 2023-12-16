@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+<head>
+    <title>Polka Restaurant</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav>
+        <div>
+            <a href="{% url 'home' %}">Polka Restaurant</a>
+        </div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/menu/">Menu</a></li>
+            <li><a href="/reservation/">Reservation</a></li>
+        </ul>
+        <ul>
+            {% if user.is_authenticated %}
+            <li><a href="#">Logout</a></li>
+            {% else %}
+            <li><a href="#">Register</a></li>
+            <li><a href="#">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <main>
+        {% block content %}
+        <!-- Content from views.py implemented here -->
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Polka Restaurant. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
