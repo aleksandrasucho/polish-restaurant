@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
@@ -21,7 +22,7 @@ class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     # Basic reservation details
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=255)
     date = models.DateField()
     time = models.TimeField()
     notes = models.TextField(null=True, blank=True)
