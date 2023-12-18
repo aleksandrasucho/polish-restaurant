@@ -10,17 +10,15 @@ class ReservationForm(forms.ModelForm):
     class Meta:
         model = Reservation
         fields = [
-            'name', 'customer_email', 'date', 'time',
-            'notes', 'number_of_guests'
+            'name', 'date', 'time', 'notes', 'number_of_guests'
         ]
         
         widgets = {
-                'name': forms.TextInput(attrs={'class': 'form-control'}),
-                'customer_email': forms.EmailInput(attrs={'class': 'form-control'}),
-                'date': DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-                'notes': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
-                'number_of_guests': forms.NumberInput(attrs={'class': 'form-control', 'min': 1, 'max': 8}),
-            }
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'date': DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'notes': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'number_of_guests': forms.NumberInput(attrs={'class': 'form-control', 'min': 1, 'max': 8}),
+        }
         
     def clean(self):
         cleaned_data = super().clean()

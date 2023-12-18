@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="reservation-section">
+        <h2>Make a Reservation</h2>
+        <p>Fill out the form below to reserve a table at Polka Restaurant.</p>
+
+        <form method="post" action="{% url 'reservation' %}">
+            {% csrf_token %}
+            
+            <!-- Your reservation form fields go here -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="date">Reservation Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="time">Reservation Time:</label>
+            <input type="time" id="time" name="time" required>
+
+            <label for="guests">Number of Guests:</label>
+            <input type="number" id="guests" name="guests" min="1" required>
+
+            <button type="submit">Submit Reservation</button>
+        </form>
+    </section>
+{% endblock %}
