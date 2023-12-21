@@ -13,16 +13,16 @@
     <!-- Navigation -->
     <nav>
         <div>
-            <a href="{% url 'base' %}">Polka Restaurant</a>
+            <a href="{% url 'home' %}">Polka Restaurant</a>
         </div>
         <ul>
-            <li><a href="{% url 'base' %}">Home</a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'reservation' %}">Reservation</a></li>
             <li><a href="{% url 'menu' %}">Menu</a></li> 
         </ul>
         <ul>
             {% if user.is_authenticated %}
-            <li><a href="#">Logout</a></li>
+            <li><a href="logout">Logout</a></li>
             {% else %}
             <li><a href="#">Login</a></li>
             {% endif %}
