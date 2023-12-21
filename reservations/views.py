@@ -8,10 +8,10 @@ class HomeView(generic.TemplateView):
     """
     View for the home page.
     """
-    template_name = 'base.html'
+    template_name = 'home.html'
     
     def get(self, request):
-        return render(request, 'base.html', {})
+        return render(request, 'home.html', {})
     
 class MenuView(generic.TemplateView):
     template_name = 'menu.html'
@@ -19,8 +19,8 @@ class MenuView(generic.TemplateView):
     def get(self, request):
         return render(request, 'menu.html')
 
-class ReservationView(generic.TemplateView):
-    template_name = 'create_reservation.html'
+class AddReservation(generic.TemplateView):
+    template_name = 'add_reservation.html'
 
     def get(self, request):
         form = ReservationForm()
