@@ -1,45 +1,80 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Polka Restaurant</title>
+  {% block meta %}
+    {% comment %} Required meta tags {% endcomment %}
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <meta name="description" content="Explore the flavors of Poland at Polka Restaurant. Savor authentic dishes, from pierogi to kielbasa, in a cozy setting. Join us for a taste of Polish tradition" />
+    <meta name="keywords" content="restaurant, Polish cuisine, Polish food, traditional dishes, dining, menu, reservation, Poland, Polish restaurant, authentic " />
+    <meta name="author" content="Aleksandra Suchojad" />
+  {% endblock %}
+
+  {% block extra_meta %}
+  {% endblock%}
+
+
+  {% block corecss %}
+    {% comment %} Link to css {% endcomment %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/static/style.css' %}">
+  {% endblock %}
+
+  {% block jslibraries %}
+    <script src="https://kit.fontawesome.com/8e4b08b302.js" crossorigin="anonymous"></script>
+  {% endblock %}
+
+  <title>Polka Restaurant {% block extra_title %}{% endblock %}</title>
 </head>
 
 <body>
-
-    <!-- Navigation -->
-    <nav>
-        <div>
-            <a href="{% url 'home' %}">Polka Restaurant</a>
-        </div>
-        <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'reservation' %}">Reservation</a></li>
-            <li><a href="{% url 'menu' %}">Menu</a></li> 
-        </ul>
-        <ul>
-            {% if user.is_authenticated %}
-            <li><a href="logout">Logout</a></li>
-            {% else %}
-            <li><a href="#">Login</a></li>
-            {% endif %}
-        </ul>
+  <header class="header">
+    <nav class="navbar navbar__customer">
+      <a href="{% url 'home' %}" aria-label="Go to Home page" class="logo__container">
+        Polka Restaurant
+      </a>
+      <ul class="navbar__items">
+        <li><a href="{% url 'home' %}" aria-label="Go to Home page">Home</a></li>
+        <li><a href="{% url 'menu' %}" aria-label="Go to Menu page">Menu</a></li>
+        <li><a href="{% url 'reservation' %}" aria-label="Go to Reservations page">Reservation</a></li>
+        <li><a href="#" aria-label="Go to Information page">Information</a></li>
+        
+        <!-- Add other items as needed -->
+        {% if user.is_authenticated %}
+          <!-- Add authenticated user items if needed -->
+          <li><a href="#" aria-label="Go to Logout page">Logout</a></li>
+        {% else %}
+          <!-- Add non-authenticated user items if needed -->
+          <li><a href="#" aria-label="Go to Login page">Login</a></li>
+        {% endif %}
+      </ul>
     </nav>
+  </header>
 
-    <main>
-        {% block content %}
+  <main class="main">
+    <div class="content__container">
+      {% block content %}
         <!-- Content from views.py implemented here -->
-        {% endblock %}
-    </main>
+      {% endblock %}
+    </div>
+  </main>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2023 Polka Restaurant. All rights reserved.</p>
-    </footer>
+  <footer class="footer">
+    <p>&copy; 2023 Polka Restaurant. All rights reserved.</p>
+  </footer>
 
+  {% block postloadjs %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+      integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+      crossorigin="anonymous"></script>
+  {% endblock %}
 </body>
 
 </html>

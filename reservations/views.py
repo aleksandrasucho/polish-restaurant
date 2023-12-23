@@ -45,10 +45,3 @@ class AddReservation(generic.TemplateView):
         else:
             return render(request, self.template_name, {'form': form})
         
-class LogoutRedirectView(generic.RedirectView):
-    """
-    View for handling logout and redirecting to the home page.
-    """
-    url = '/'
-    def get(self, request, *args, **kwargs):
-        return LogoutView.as_view()(request, *args, **kwargs)
