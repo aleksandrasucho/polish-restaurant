@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,8 +15,7 @@
   {% endblock %}
 
   {% block extra_meta %}
-  {% endblock%}
-
+  {% endblock %}
 
   {% block corecss %}
     {% comment %} Link to css {% endcomment %}
@@ -41,17 +41,14 @@
       <ul class="navbar__items">
         <li><a href="{% url 'home' %}" aria-label="Go to Home page">Home</a></li>
         <li><a href="{% url 'menu' %}" aria-label="Go to Menu page">Menu</a></li>
-        <li><a href="{% url 'reservation' %}" aria-label="Go to Reservations page">Reservation</a></li>
         <li><a href="#" aria-label="Go to Information page">Information</a></li>
-        
-        <!-- Add other items as needed -->
         {% if user.is_authenticated %}
-          <!-- Add authenticated user items if needed -->
+          <li><a href="{% url 'add_reservation' %}" aria-label="Go to Reservations page">Reservation</a></li>
           <li><a href="#" aria-label="Go to Logout page">Logout</a></li>
         {% else %}
-          <!-- Add non-authenticated user items if needed -->
-          <li><a href="/account/login/" aria-label="Go to Login page">Login</a></li>
+          <li><a href="{% url 'account_login' %}" aria-label="Go to Login page">Login</a></li>
         {% endif %}
+        <!-- Add other items as needed -->
       </ul>
     </nav>
   </header>

@@ -1,47 +1,39 @@
-from django.contrib.auth.views import LogoutView
-from django.views import View
-from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
-from django.views.generic import ListView, DetailView
 from .forms import ReservationForm
 
 class HomeView(generic.TemplateView):
-    """
-    View for the home page.
-    """
     template_name = 'home.html'
     
     def get(self, request):
         return render(request, 'home.html', {})
-    
+
 class MenuView(generic.TemplateView):
     template_name = 'menu.html'
     
     def get(self, request):
         return render(request, 'menu.html')
 
-class AddReservation(generic.TemplateView):
+@method_decorator(login_required(login_url='account_login'), name='dispatch')
+class AddReservation(generic.CreateView):
     template_name = 'add_reservation.html'
+    form_class = ReservationForm
+    success_url = reverse_lazy('reservation')  # Redirect to the 'reservation' URL upon successful form submission
 
-    def get(self, request):
-        form = ReservationForm()
-        return render(request, self.template_name, {'form': form})
+    def form_valid(self, form):
+        # If the form is valid, create a Reservation instance but don't save it to the database yet (commit=False)
+        reservation = form.save(commit=False)
 
-    def post(self, request):
-        form = ReservationForm(request.POST)
-        
-        if form.is_valid():
-            # If the form is valid, create a Reservation instance but don't save it to the database yet (commit=False)
-            reservation = form.save(commit=False)
+        if self.request.user.is_authenticated:
+            reservation.user = self.request.user
 
-            if request.user.is_authenticated:
-                reservation.user = request.user
+        # Save the reservation to the database
+        reservation.save()
 
-            # Save the reservation to the database
-            reservation.save()
+        # Pass the reservation object to the success_url template
+        self.object = reservation
 
-            # Redirect to a confirmation page with details of the reservation
-            return render(request, 'reservation_confirmation.html', {'reservation': reservation})
-        else:
-            return render(request, self.template_name, {'form': form})
-        
+        return super().form_valid(form)
