@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static '/static/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
   {% endblock %}
 
   {% block jslibraries %}
@@ -50,7 +50,7 @@
           <li><a href="#" aria-label="Go to Logout page">Logout</a></li>
         {% else %}
           <!-- Add non-authenticated user items if needed -->
-          <li><a href="#" aria-label="Go to Login page">Login</a></li>
+          <li><a href="/account/login/" aria-label="Go to Login page">Login</a></li>
         {% endif %}
       </ul>
     </nav>
