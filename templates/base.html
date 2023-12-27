@@ -29,27 +29,45 @@
     <script src="https://kit.fontawesome.com/8e4b08b302.js" crossorigin="anonymous"></script>
   {% endblock %}
 
-  <title>Polka Restaurant {% block extra_title %}{% endblock %}</title>
+  <title>{% block title %}Polka Restaurant{% endblock %}</title>
 </head>
 
 <body>
   <header class="header">
-    <nav class="navbar">
-      <a href="{% url 'home' %}" aria-label="Go to Home page" class="logo__container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a href="{% url 'home' %}" aria-label="Go to Home page" class="navbar-brand">
         Polka Restaurant
       </a>
-      <ul class="navbar__items">
-        <li><a href="{% url 'home' %}" aria-label="Go to Home page">Home</a></li>
-        <li><a href="{% url 'menu' %}" aria-label="Go to Menu page">Menu</a></li>
-        <li><a href="#" aria-label="Go to Information page">Information</a></li>
-        {% if user.is_authenticated %}
-          <li><a href="{% url 'add_reservation' %}" aria-label="Go to Reservations page">Reservation</a></li>
-          <li><a href="#" aria-label="Go to Logout page">Logout</a></li>
-        {% else %}
-          <li><a href="{% url 'account_login' %}" aria-label="Go to Login page">Login</a></li>
-        {% endif %}
-        <!-- Add other items as needed -->
-      </ul>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}" aria-label="Go to Home page">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'menu' %}" aria-label="Go to Menu page">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" aria-label="Go to Information page">Information</a>
+          </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'add_reservation' %}" aria-label="Go to Reservations page">Reservation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" aria-label="Go to Logout page">Logout</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_login' %}" aria-label="Go to Login page">Login</a>
+            </li>
+          {% endif %}
+          <!-- Add other items as needed -->
+        </ul>
+      </div>
     </nav>
   </header>
 
@@ -61,17 +79,19 @@
     </div>
   </main>
 
-  <footer class="footer">
-    <p>&copy; 2023 Polka Restaurant. All rights reserved.</p>
+  <footer class="footer mt-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <p>&copy; 2023 Polka Restaurant. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Terms of Service</a></li>
+            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            <li class="list-inline-item"><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </footer>
-
-  {% block postloadjs %}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
-      integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
-      crossorigin="anonymous"></script>
-  {% endblock %}
-</body>
-
-</html>
