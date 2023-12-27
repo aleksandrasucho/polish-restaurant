@@ -1,5 +1,33 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block content %}
 
+<div class="hero-container">
+  <div class="hero-text">
+    <h1>Welcome to Polka Restaurant</h1>
+    <h2>Authentic Polish Cuisine</h2>
+    <h3>Experience the Taste of Poland</h3>
+    <a href="{% url 'account_login' %}" class="btn btn-primary">Book a Table</a>
+  </div>
+
+  <div id="carouselExample" class="carousel_slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://res.cloudinary.com/ds7qsnpge/image/upload/v1703632969/fresh_from_poland_breakfast_rdmzyq.jpg" class="d-block w-100" alt="Picture of a table full of plates with different food.">
+      </div>
+      <div class="carousel-item">
+        <img src="https://res.cloudinary.com/ds7qsnpge/image/upload/v1703632969/polish-food-secret-tips-640x427_f4zeph.jpg" class="d-block w-100" alt="A plate of Golabki, one of Polish traditional meals">
+      </div>
+      <div class="carousel-item">
+        <img src="https://res.cloudinary.com/ds7qsnpge/image/upload/v1703632969/polish-food-scaled_vlznsx.jpg" class="d-block w-100" alt="Picture of a plate with dumplings">
+      </div>
+      <div class="carousel-item">
+        <img src="https://res.cloudinary.com/ds7qsnpge/image/upload/v1703632969/image_dihfqp.jpg" class="d-block w-100" alt="A table with three plates with food and a glass of wine">
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
 
