@@ -28,7 +28,10 @@ class AddReservation(generic.CreateView):
         reservation = form.save(commit=False)
 
         if self.request.user.is_authenticated:
+            print("User is authenticated:", self.request.user)
             reservation.user = self.request.user
+        else:
+            print("User is not authenticated")
 
         # Save the reservation to the database
         reservation.save()
