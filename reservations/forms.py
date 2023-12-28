@@ -1,16 +1,18 @@
 from django import forms
-from django.forms import DateInput
+from django.forms import DateInput, SelectDateWidget
 from django.core.exceptions import ValidationError
+from tempus_dominus.widgets import DateTimePicker
 from django.utils import timezone
-from .models import Reservation, Table
+from .models import Reservation, Table, CAPACITY, BOOKING_TIME
 
 class ReservationForm(forms.ModelForm):
-    time = forms.TimeField(widget=forms.TimeInput(attrs={'class': 'form-control'}))
+    time = forms.ChoiceField(choices=BOOKING_TIME, widget=forms.Select(attrs={'class': 'form-control'}))
+
 
     class Meta:
         model = Reservation
         fields = [
-            'name', 'date', 'time', 'notes', 'number_of_guests'
+            'name', 'date', 'time', 'notes', 'number_of_guests', 'table'
         ]
         
         widgets = {
@@ -18,6 +20,7 @@ class ReservationForm(forms.ModelForm):
             'date': DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'notes': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'number_of_guests': forms.NumberInput(attrs={'class': 'form-control', 'min': 1, 'max': 8}),
+            'table': forms.Select(attrs={'class': 'form-control'}),
         }
         
     def clean(self):

@@ -21,10 +21,9 @@ class MenuView(generic.TemplateView):
 class AddReservation(generic.CreateView):
     template_name = 'add_reservation.html'
     form_class = ReservationForm
-    success_url = reverse_lazy('reservation')  # Redirect to the 'reservation' URL upon successful form submission
+    success_url = reverse_lazy('home.html')
 
     def form_valid(self, form):
-        # If the form is valid, create a Reservation instance but don't save it to the database yet (commit=False)
         reservation = form.save(commit=False)
 
         if self.request.user.is_authenticated:

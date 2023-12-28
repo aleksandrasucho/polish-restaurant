@@ -10,7 +10,7 @@
     <h3>Experience the Taste of Poland</h3>
     
     {% if user.is_authenticated %}
-    <a href="{% url 'reservation' %}" class="btn btn-primary">Book a Table</a>
+    <a href="{% url 'add_reservation' %}" class="btn btn-primary">Book a Table</a>
   {% else %}
     <a href="{% url 'account_login' %}" class="btn btn-primary">Login to Book a Table</a>
   {% endif %}

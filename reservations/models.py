@@ -5,6 +5,10 @@ from cloudinary.models import CloudinaryField
 
 # Provides a list of choices for table capacity.
 CAPACITY = ((2, "2"), (4, "4"), (6, "6"), (8, "8"))
+# Provides a list of times when creating reservations.
+BOOKING_TIME = ((1, "12:00pm - 1:45pm"), (2, "2:00pm - 3:45pm"),
+                (3, "4:00pm - 5:45pm"), (4, "6:00pm - 7:45pm"),
+                (5, "8:00pm - 9:45pm"))
 
 # Create your models here.
 
