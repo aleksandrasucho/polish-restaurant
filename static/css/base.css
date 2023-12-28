@@ -183,3 +183,46 @@ body {
     color: #555;
     margin-bottom: 1rem;
   }
+
+/* Container Styling for Sign-In Page */
+.sign-in-container {
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.sign-in-container h3 {
+    color: #e87d66;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.sign-in-container p {
+    color: #555;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.sign-in-container a.text-primary {
+    color: #007bff;
+}
+
+.sign-in-container .btn-primary {
+    background-color: #e87d66;
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.sign-in-container .btn-primary:hover {
+    background-color: #a03622;
+}

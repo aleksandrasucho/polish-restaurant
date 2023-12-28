@@ -7,14 +7,14 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container sign-in-container">
     <div class="row">
         <div class="col-md-8 mt-3 offset-md-2">
-            <h3>{% trans "Sign In" %}</h3>
-            <p>
+            <h3 class="text-center">{% trans "Sign In" %}</h3>
+            <p class="text-center">
                 Welcome back to Polka Restaurant. 
-                If you would like to make a reservation please login. If you have not created an account yet, then
-                <a href="{{ signup_url }}" style="color: blue;">sign up</a> first.
+                If you would like to make a reservation, please login. If you have not created an account yet, then
+                <a href="{{ signup_url }}" class="text-primary">sign up</a> first.
             </p>
         </div>
     </div>
@@ -26,9 +26,10 @@
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
-                <button class="btn btn-signup right" type="submit">{% trans "Sign In" %}</button>
+                <button class="btn btn-primary btn-block mt-3" type="submit">{% trans "Sign In" %}</button>
             </form>
         </div>
     </div>
 </div>
+
 {% endblock %}
