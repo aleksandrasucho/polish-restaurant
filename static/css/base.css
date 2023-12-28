@@ -226,3 +226,81 @@ body {
 .sign-in-container .btn-primary:hover {
     background-color: #a03622;
 }
+
+/* Sign-Up Form Styling */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #e87d66;
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #a03622;
+}
+
+form p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+form a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+form a:hover {
+    text-decoration: underline;
+}
+
+/* Add this CSS to center and style the sign-up text without a border */
+.signup-container {
+    text-align: center;
+    max-width: 450px; /* Adjust the maximum width */
+    margin: 0 auto;
+    padding: 20px;
+    color: #333; /* Use a muted color for text */
+    border-radius: 10px; /* Optional: Add rounded corners */
+}
+
+.signup-container h1 {
+    font-size: 3rem; /* Adjust the font size */
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.signup-container p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.signup-container a {
+    color: #007bff; /* Use a subdued color for links */
+    text-decoration: none;
+}
+
+.signup-container a:hover {
+    text-decoration: underline;
+}
