@@ -385,30 +385,13 @@ form a:hover {
     width: 100%;
     height: auto;
     border-radius: 5px;
-    opacity: 0; /* Initially set opacity to 0 */
-    transition: opacity 0.3s ease; /* Add a smooth transition effect */
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Add transition for transform */
 }
 
 .menu-item:hover .menu-image {
     display: block;
-    opacity: 1; /* Set opacity to 1 on hover */
-}
-
-.tooltip {
-    display: none;
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 5px;
-    background-color: #333;
-    color: #fff;
-    border-radius: 5px;
-    font-size: 0.8rem;
-}
-
-.menu-item:hover .tooltip {
-    display: block;
+    opacity: 1;
 }
 
 .menu-item:hover .menu-h3 {
