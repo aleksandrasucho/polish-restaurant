@@ -2,18 +2,81 @@
 {% load static %}
 
 {% block content %}
-<h2>Menu</h2>
 
-<div>
-    <h3>Burger</h3>
-    <p>Delicious burger with all the fixings.</p>
-    <p>Price: $10.99</p>
-</div>
+<div class="menu-container">
+    <div class="row">
+        <!-- First Column -->
+        <h1 class="sub-page-title padding">Menu</h1>
+        <div class="col-md-6 column-padding">
 
-<div>
-    <h3>Pasta</h3>
-    <p>Homemade pasta with your choice of sauce.</p>
-    <p>Price: $12.99</p>
+            <h2 class="menu-h2">SIDES</h2>
+            <div class="menu-item">
+                <h3 class="menu-h3">Kopytka - £4.99</h3>
+                <p>Potato dumplings similar to gnocchi, served with butter, breadcrumbs, and sometimes crispy bacon.</p>
+            </div>
+
+            <div class="menu-item">
+                <h3 class="menu-h3">Placki Ziemniaczane - £5.99</h3>
+                <p>Crispy potato pancakes served with sour cream or applesauce.</p>
+            </div>
+
+            <h2 class="menu-h2">SOUPS</h2>
+            <div class="menu-item">
+                <h3 class="menu-h3">Żurek (Polish Sour Soup) - £7.50</h3>
+                <p>A traditional Polish soup with fermented rye flour, chicken or vegetable broth, sautéed vegetables, and optional sausage or bacon.</p>
+            </div>
+
+            <div class="menu-item">
+                <h3 class="menu-h3">Barszcz (Beet Soup) - £6.90</h3>
+                <p>A vibrant beetroot soup served hot, often accompanied by sour cream and small dumplings called "uszka."</p>
+            </div>
+
+            <div class="menu-item">
+                <h3 class="menu-h3">Rosół (Chicken Broth) - £6.00</h3>
+                <p>A clear chicken broth served with fine noodles or dumplings and fresh herbs.</p>
+            </div>
+
+            <h2 class="menu-h2">DESSERTS</h2>
+            <div class="menu-item">
+                <h3 class="menu-h3">Sernik (Cheesecake) - £6.99</h3>
+                <p>A rich and creamy cheesecake often topped with fruits or fruit compote.</p>
+            </div>
+
+            <div class="menu-item">
+                <h3 class="menu-h3">Makowiec (Poppy Seed Roll) - £5.99</h3>
+                <p>A sweet roll filled with a mixture of ground poppy seeds, honey, and nuts.</p>
+            </div>
+        </div>
+        <!-- Second Column -->
+        <div class="col-md-6 column-padding">
+            <h2 class="menu-h2">MAIN COURSES</h2>
+            <div class="menu-item">
+                <h3 class="menu-h3">Pierogi - £8.99</h3>
+                <p>Handmade dumplings filled with various options such as meat, potatoes, cheese, or sauerkraut, served with caramelized onions and sour cream.</p>
+            </div>
+
+            <div class="menu-item">
+                <h3 class="menu-h3">Bigos (Hunter's Stew) - £10.99</h3>
+                <p>A hearty dish featuring sauerkraut, fresh cabbage, a variety of meats, and aromatic spices.</p>
+            </div>
+
+            <div class="menu-item">
+                <h3 class="menu-h3">Kotlet Schabowy - £9.99</h3>
+                <p>Breaded and pan-fried pork cutlet, a Polish take on the classic schnitzel.</p>
+            </div>
+
+            <div class="menu-item">
+                <h3 class="menu-h3">Gołąbki (Stuffed Cabbage Rolls) - £11.99</h3>
+                <p>Cabbage leaves filled with a mixture of meat and rice, simmered in a tomato-based sauce.</p>
+            </div>
+
+            <h2 class="menu-h2">BEVERAGES</h2>
+            <div class="menu-item">
+                <h3 class="menu-h3">Kompot - £3.49</h3>
+                <p>Homemade fruit compote, a refreshing non-alcoholic beverage.</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

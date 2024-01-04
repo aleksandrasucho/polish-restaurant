@@ -304,3 +304,33 @@ form a:hover {
 .signup-container a:hover {
     text-decoration: underline;
 }
+
+/* MENU */
+
+.food-container {
+    margin: 10vh 20vw;
+}
+
+.menu-container {
+    margin-top: 0vh;
+    padding: 0 20vw;
+    margin-bottom: 5vh;
+}
+
+.column-padding {
+    padding: 0 5vw;
+}
+
+.menu-h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 2rem;
+}
+
+.menu-h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0;
+    font-family: "Lato", sans-serif;
+}
