@@ -2,7 +2,6 @@ from django import forms
 from django.forms import DateInput, Select
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.utils import timezone
-from tempus_dominus.widgets import DateTimePicker
 from .models import Reservation, Table, CAPACITY, BOOKING_TIME
 
 class ReservationForm(forms.ModelForm):
