@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'cloudinary',
     'cloudinary_storage',
     'crispy_forms',
-    'tempus_dominus',
     'reservations',
     
     
