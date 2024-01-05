@@ -1,6 +1,8 @@
+/* Importing Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Sansita+Swashed:wght@500&display=swap');
 
-/*------ Global Settings------*/
+/*------ Global Settings ------*/
+/* Resetting default margin, padding, and box-sizing for all elements */
 *,
 *::before,
 *::after {
@@ -9,10 +11,12 @@
     box-sizing: border-box;
 }
 
+/* Smooth scrolling for the entire page */
 html {
     scroll-behavior: smooth;
 }
 
+/* Body styling */
 body {
     margin: 0;
     padding: 0;
@@ -23,10 +27,12 @@ body {
     min-height: 100vh;
 }
 
+/* Main content area */
 .main {
     flex: 1;
 }
 
+/* Hero section styling */
 .hero-container {
     position: relative;
 }
@@ -62,10 +68,12 @@ body {
     margin-top: -1rem;
 }
 
+/* Carousel item styling */
 .carousel-item {
     height: 80vh;
 }
 
+/* Primary button styling */
 .btn-primary {
     background-color: #e87d66;
     color: white;
@@ -93,7 +101,7 @@ body {
     font-weight: 700;
 }
 
-
+/* Navbar links styling */
 .navbar-nav {
     margin-top: 10px;
 }
@@ -113,6 +121,7 @@ body {
     color: #cf422b;
 }
 
+/* About section styling */
 .about-section {
     display: flex;
     justify-content: space-between;
@@ -147,6 +156,7 @@ body {
     margin-bottom: 1rem;
 }
 
+/* Styling for primary buttons within about section */
 .btn-primary, .btn-primary:hover {
     background-color: #e87d66;
     color: white;
@@ -169,27 +179,27 @@ body {
     border-radius: 10px;
     margin-top: 4rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .opening-hours-section h2 {
+}
+
+.opening-hours-section h2 {
     font-size: 2.5rem;
     font-weight: 700;
     color: #333;
     margin-bottom: 2rem;
-  }
-  
-  .opening-hours-section ul {
+}
+
+.opening-hours-section ul {
     list-style-type: none;
     padding: 0;
-  }
-  
-  .opening-hours-section li {
+}
+
+.opening-hours-section li {
     font-size: 1.2rem;
     font-weight: 400;
     line-height: 1.6;
     color: #555;
     margin-bottom: 1rem;
-  }
+}
 
 /* Container Styling for Sign-In Page */
 .sign-in-container {
@@ -259,187 +269,4 @@ form button {
     padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #a03622;
-}
-
-form p {
-    font-size: 1.2rem;
-    color: #555;
-    margin-bottom: 15px;
-}
-
-form a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-form a:hover {
-    text-decoration: underline;
-}
-
-
-.signup-container {
-    text-align: center;
-    max-width: 450px;
-    margin: 0 auto;
-    padding: 20px;
-    color: #333;
-    border-radius: 10px;
-}
-
-.signup-container h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.signup-container p {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-}
-
-.signup-container a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.signup-container a:hover {
-    text-decoration: underline;
-}
-
-/* MENU */
-
-.food-container {
-    margin: 10vh 20vw;
-}
-
-.menu-container {
-    margin-top: 0vh;
-    padding: 0 20vw;
-    margin-bottom: 5vh;
-}
-
-.column-padding {
-    padding: 0 5vw;
-}
-
-.menu-h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-    margin-top: 2rem;
-    color: #e87d66;
-}
-
-.menu-h3 {
-    font-size: 1rem;
-    font-weight: 500;
-    margin-bottom: 0;
-    font-family: "Lato", sans-serif;
-    color: #555;
-    transition: color 0.3s ease, transform 0.3s ease;
-    cursor: pointer;
-}
-
-.menu-item p {
-    color: #777;
-}
-
-.menu-item {
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 15px;
-}
-
-/* Bootstrap Styling */
-.menu-item h3 {
-    margin-bottom: 5px;
-}
-
-.menu-item p {
-    margin-bottom: 10px;
-}
-
-.btn-primary {
-    background-color: #e87d66;
-    color: white;
-    font-weight: 600;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.btn-primary:hover {
-    background-color: #a03622;
-}
-
-.image-container {
-    position: relative;
-}
-
-.menu-image {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.menu-item:hover .menu-image {
-    display: block;
-    opacity: 1;
-}
-
-.menu-item:hover .menu-h3 {
-    color: #e87d66;
-    transform: scale(1.1);
-}
-
-
-.information-container {
-    background-color: #f8f8f8;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.information-h2 {
-    color: #e87d66;
-}
-
-.information-h3 {
-    color: #555;
-}
-
-.text-container p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #555;
-    margin-bottom: 1rem;
-}
-
-.card-img-top {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.footer {
-    margin-top: auto;
-  }
+    transition: background-color 0.3
