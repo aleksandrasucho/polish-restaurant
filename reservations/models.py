@@ -2,15 +2,19 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+import datetime
 
 # Provides a list of choices for table capacity.
 CAPACITY = ((2, "2"), (4, "4"), (6, "6"), (8, "8"))
-# Provides a list of times when creating reservations.
-BOOKING_TIME = ((1, "12:00pm - 1:45pm"), (2, "2:00pm - 3:45pm"),
-                (3, "4:00pm - 5:45pm"), (4, "6:00pm - 7:45pm"),
-                (5, "8:00pm - 9:45pm"))
 
-# Create your models here.
+# Generate booking times for Monday to Sunday (09:00 - 22:00)
+BOOKING_TIME = (
+    (datetime.time(12, 0), "12:00pm - 1:45pm"),
+    (datetime.time(14, 0), "2:00pm - 3:45pm"),
+    (datetime.time(16, 0), "4:00pm - 5:45pm"),
+    (datetime.time(18, 0), "6:00pm - 7:45pm"),
+    (datetime.time(20, 0), "8:00pm - 9:45pm"),
+)
 
 class Table(models.Model):
     # Table details
@@ -28,7 +32,7 @@ class Reservation(models.Model):
     # Basic reservation details
     name = models.CharField(max_length=255)
     date = models.DateField()
-    time = models.TimeField()
+    time = models.TimeField(choices=BOOKING_TIME, default=datetime.time(12, 0))
     notes = models.TextField(null=True, blank=True)
     table = models.ForeignKey(Table, related_name="reservations", on_delete=models.CASCADE, blank=True,)
     number_of_guests = models.IntegerField()
