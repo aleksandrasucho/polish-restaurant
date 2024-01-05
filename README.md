@@ -37,3 +37,5 @@ You can now use the `heroku` CLI program - try running `heroku apps` to confirm 
 ---
 
 Happy coding!
+
+web: gunicorn restaurant.wsgi:application -b 0.0.0.0:$PORT
