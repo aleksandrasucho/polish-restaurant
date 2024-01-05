@@ -39,3 +39,6 @@ class AddReservation(generic.CreateView):
         self.object = reservation
 
         return super().form_valid(form)
+    
+class InformationView(generic.TemplateView):
+    template_name = 'information.html'
