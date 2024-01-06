@@ -174,10 +174,10 @@ body {
 /* Opening Hours Section */
 .opening-hours-section {
     text-align: center;
-    padding: 4rem;
-    background-color: #f8f8f8;
+    padding: 40px;
+    background-color: white;
     border-radius: 10px;
-    margin-top: 4rem;
+    margin-top: 40px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -463,5 +463,41 @@ form a:hover {
 
 /* Footer styling */
 .footer {
-    margin-top: auto;
+    background-color: #e87d66;
+    padding: 40px 0;
+    color: white;  /* Set the text color to white */
 }
+
+.footer-h2,
+.text-white,
+.footer-links {
+    color: white;  /* Set the text color to white for these elements */
+}
+
+.footer-links i {
+    font-size: 24px;  /* Adjust the size as needed */
+}
+
+.information-container {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .col-md-8 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .col-md-4 {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .card {
+    flex: 1;
+  }
+
+  .card-img-top {
+    object-fit: cover;
+    height: 100%;
+  }

@@ -2,10 +2,11 @@
 {% load static %}
 
 {% block content %}
-    <section class="reservation-section">
+    <section class="reservation-section ">
+        <div class="text-center">
         <h2>Make a Reservation</h2>
         <p>Fill out the form below to reserve a table at Polka Restaurant.</p>
-
+        </div>
         <form method="post" action="{% url 'add_reservation' %}">
             {% csrf_token %}
             
