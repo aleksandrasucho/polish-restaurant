@@ -1,34 +1,39 @@
 import logging
-from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.http import Http404
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import generic
+from django.views.generic import DetailView
 from .forms import ReservationForm
 from .models import Reservation, Table
 
+# Set up the logger
 logger = logging.getLogger(__name__)
 
 class HomeView(generic.TemplateView):
     template_name = 'home.html'
-    
+
     def get(self, request):
         return render(request, 'home.html', {})
 
 class MenuView(generic.TemplateView):
     template_name = 'menu.html'
-    
+
     def get(self, request):
         return render(request, 'menu.html')
+
+class ReservationDetailView(DetailView):
+    model = Reservation
+    template_name = 'reservation_detail.html'
+    context_object_name = 'reservation'
 
 @method_decorator(login_required(login_url='account_login'), name='dispatch')
 class AddReservation(generic.CreateView):
     template_name = 'add_reservation.html'
     form_class = ReservationForm
-    success_url = reverse_lazy('home')
 
     def form_valid(self, form):
         reservation = form.save(commit=False)
@@ -39,26 +44,21 @@ class AddReservation(generic.CreateView):
         else:
             logger.info("User is not authenticated")
 
-        # Get the selected table from the form and assign it to the reservation
         selected_table = form.cleaned_data.get('table', None)
         if selected_table:
             reservation.table = selected_table
         else:
-            # Assign table with the lowest capacity
             date = form.cleaned_data['date']
             time = form.cleaned_data['time']
             guests = form.cleaned_data['number_of_guests']
-            
-            # Filter tables with capacity greater or equal to the number of guests
+
             tables_with_capacity = list(Table.objects.filter(
                 capacity__gte=guests
             ))
 
-            # Get bookings on specified date and time
             bookings_on_requested_date = Reservation.objects.filter(
                 date=date, time=time)
 
-            # Iterate over bookings to get tables not booked
             for booking in bookings_on_requested_date:
                 for table in tables_with_capacity:
                     if table.table_number == booking.table.table_number:
@@ -66,17 +66,15 @@ class AddReservation(generic.CreateView):
                         break
             
             if not tables_with_capacity:
-                # Handle the case when no tables are available
                 messages.error(self.request, "No tables available for the selected date and time.")
                 return render(self.request, self.template_name, {'form': form})
 
             lowest_capacity_table = min(tables_with_capacity, key=lambda table: table.capacity)
             reservation.table = lowest_capacity_table
 
-        # Save the reservation to the database
         reservation.save()
 
-        # Pass the reservation object to the success_url template
+        self.success_url = reverse_lazy('reservation_detail', kwargs={'pk': reservation.pk})
         self.object = reservation
 
         return super().form_valid(form)

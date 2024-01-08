@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Reservation Detail</h2>
+            <table class="table mt-3">
+                <tbody>
+                    <tr>
+                        <th scope="row">Reservation ID</th>
+                        <td>{{ object.id }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Date</th>
+                        <td>{{ object.date }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Time</th>
+                        <td>{{ object.get_time_display }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Number of Guests</th>
+                        <td>{{ object.number_of_guests }}</td>
+                    </tr>
+                    <!-- Add more details as needed -->
+                </tbody>
+            </table>
+
+            {% if user == object.user %}
+                <!-- Show update and delete options only if the user is the owner of the reservation -->
+                <a href="{% url 'update_reservation' pk=object.pk %}" class="btn btn-primary">Update Reservation</a>
+                <a href="{% url 'delete_reservation' pk=object.pk %}" class="btn btn-danger">Cancel Reservation</a>
+            {% endif %}
+        </div>
+        <div class="col-md-4">
+            <!-- Add additional content or information on the right column if needed -->
+        </div>
+    </div>
+</div>
+
+{% endblock %}
