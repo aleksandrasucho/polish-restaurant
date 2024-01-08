@@ -1,13 +1,16 @@
+import logging
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from django.http import Http404
+from django.core.exceptions import PermissionDenied
 from django.contrib import messages
-from django.core.exceptions import ValidationError
-from django.utils.decorators import method_decorator
+from django.http import Http404
+from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views import generic
 from .forms import ReservationForm
-from .models import Reservation, Table, CAPACITY, BOOKING_TIME
+from .models import Reservation, Table
+
+logger = logging.getLogger(__name__)
 
 class HomeView(generic.TemplateView):
     template_name = 'home.html'
@@ -23,36 +26,59 @@ class MenuView(generic.TemplateView):
 
 @method_decorator(login_required(login_url='account_login'), name='dispatch')
 class AddReservation(generic.CreateView):
-    """View to handle the addition of reservations."""
     template_name = 'add_reservation.html'
-    model = Reservation
     form_class = ReservationForm
     success_url = reverse_lazy('home')
 
-    def get(self, request, *args, **kwargs):
-        """Handle GET requests."""
-        if request.user.is_authenticated:
-            if request.user.profile.role.id == 1:
-                return render(
-                    request,
-                    'profiles/access_denied.html',
-                )
-            else:
-                form = self.form_class()
-                return render(
-                    request,
-                    self.template_name,
-                    {'form': form},
-                )
-        else:
-            return render(
-                request,
-                'account/login.html',
-            )
-
     def form_valid(self, form):
-        """Handle form validation for adding a reservation."""
-        form.instance.user = self.request.user
+        reservation = form.save(commit=False)
+
+        if self.request.user.is_authenticated:
+            logger.info("User is authenticated: %s", self.request.user)
+            reservation.user = self.request.user
+        else:
+            logger.info("User is not authenticated")
+
+        # Get the selected table from the form and assign it to the reservation
+        selected_table = form.cleaned_data.get('table', None)
+        if selected_table:
+            reservation.table = selected_table
+        else:
+            # Assign table with the lowest capacity
+            date = form.cleaned_data['date']
+            time = form.cleaned_data['time']
+            guests = form.cleaned_data['number_of_guests']
+            
+            # Filter tables with capacity greater or equal to the number of guests
+            tables_with_capacity = list(Table.objects.filter(
+                capacity__gte=guests
+            ))
+
+            # Get bookings on specified date and time
+            bookings_on_requested_date = Reservation.objects.filter(
+                date=date, time=time)
+
+            # Iterate over bookings to get tables not booked
+            for booking in bookings_on_requested_date:
+                for table in tables_with_capacity:
+                    if table.table_number == booking.table.table_number:
+                        tables_with_capacity.remove(table)
+                        break
+            
+            if not tables_with_capacity:
+                # Handle the case when no tables are available
+                messages.error(self.request, "No tables available for the selected date and time.")
+                return render(self.request, self.template_name, {'form': form})
+
+            lowest_capacity_table = min(tables_with_capacity, key=lambda table: table.capacity)
+            reservation.table = lowest_capacity_table
+
+        # Save the reservation to the database
+        reservation.save()
+
+        # Pass the reservation object to the success_url template
+        self.object = reservation
+
         return super().form_valid(form)
 
 class UpdateReservation(generic.edit.UpdateView):
@@ -63,10 +89,9 @@ class UpdateReservation(generic.edit.UpdateView):
 
     def get_object(self, queryset=None):
         reservation = super().get_object(queryset=queryset)
-        if self.request.user.is_staff or self.request.user == reservation.user:
-            return reservation
-        else:
-            raise Http404("You are not authorized to edit this reservation.")
+        if not (self.request.user.is_staff or self.request.user == reservation.user):
+            raise PermissionDenied("You are not authorized to edit this reservation.")
+        return reservation
 
     def form_valid(self, form):
         date = form.cleaned_data['date']
@@ -83,10 +108,9 @@ class DeleteReservation(generic.edit.DeleteView):
 
     def get_object(self, queryset=None):
         reservation = super().get_object(queryset=queryset)
-        if self.request.user.is_staff or self.request.user == reservation.user:
-            return reservation
-        else:
-            raise Http404("You are not authorized to edit this reservation.")
+        if not (self.request.user.is_staff or self.request.user == reservation.user):
+            raise PermissionDenied("You are not authorized to edit this reservation.")
+        return reservation
 
     def delete(self, request, *args, **kwargs):
         reservation = self.get_object()
