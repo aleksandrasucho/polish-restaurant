@@ -1,14 +1,18 @@
 import logging
+from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseForbidden
 from django.views import generic
 from django.views.generic import DetailView
 from .forms import ReservationForm
-from .models import Reservation, Table
+from .models import Reservation, Table, UserProfile
+from .models import UserProfile
 
 # Set up the logger
 logger = logging.getLogger(__name__)
@@ -25,12 +29,30 @@ class MenuView(generic.TemplateView):
     def get(self, request):
         return render(request, 'menu.html')
 
-class ReservationDetailView(DetailView):
+class ReservationDetailView(generic.DetailView):
     model = Reservation
     template_name = 'reservation_detail.html'
     context_object_name = 'reservation'
 
-@method_decorator(login_required(login_url='account_login'), name='dispatch')
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            try:
+                user_profile = request.user.userprofile
+                if user_profile.role == 1:
+                    raise PermissionDenied("You don't have permission to view this page.")
+                else:
+                    reservation_id = kwargs['pk']
+                    reservation = get_object_or_404(Reservation, id=reservation_id)
+                    context = {
+                        'reservation': reservation,
+                    }
+                    return render(request, 'reservation_detail.html', context)
+            except UserProfile.DoesNotExist:
+                raise PermissionDenied("You don't have permission to view this page.")
+        else:
+            # If the user is not authenticated, you can redirect them to the login page
+            return HttpResponseForbidden("You don't have permission to view this page.")
+
 class AddReservation(generic.CreateView):
     template_name = 'add_reservation.html'
     form_class = ReservationForm
@@ -39,45 +61,45 @@ class AddReservation(generic.CreateView):
         reservation = form.save(commit=False)
 
         if self.request.user.is_authenticated:
+            user_profile, created = UserProfile.objects.get_or_create(user=self.request.user)
+
+            if created:
+                user_profile.role = 2
+                user_profile.save()
+
             logger.info("User is authenticated: %s", self.request.user)
             reservation.user = self.request.user
         else:
             logger.info("User is not authenticated")
 
-        selected_table = form.cleaned_data.get('table', None)
-        if selected_table:
-            reservation.table = selected_table
-        else:
-            date = form.cleaned_data['date']
-            time = form.cleaned_data['time']
-            guests = form.cleaned_data['number_of_guests']
+        selected_table = self.assign_table(reservation)
 
-            tables_with_capacity = list(Table.objects.filter(
-                capacity__gte=guests
-            ))
+        if not selected_table:
+            messages.error(self.request, "No tables available for the selected date and time.")
+            return render(self.request, self.template_name, {'form': form})
 
-            bookings_on_requested_date = Reservation.objects.filter(
-                date=date, time=time)
-
-            for booking in bookings_on_requested_date:
-                for table in tables_with_capacity:
-                    if table.table_number == booking.table.table_number:
-                        tables_with_capacity.remove(table)
-                        break
-            
-            if not tables_with_capacity:
-                messages.error(self.request, "No tables available for the selected date and time.")
-                return render(self.request, self.template_name, {'form': form})
-
-            lowest_capacity_table = min(tables_with_capacity, key=lambda table: table.capacity)
-            reservation.table = lowest_capacity_table
-
+        reservation.table = selected_table
         reservation.save()
 
-        self.success_url = reverse_lazy('reservation_detail', kwargs={'pk': reservation.pk})
-        self.object = reservation
+        messages.success(self.request, "Reservation successfully created!")
 
-        return super().form_valid(form)
+        # Redirect to a different URL (PRG pattern)
+        return redirect('reservation_detail', pk=reservation.pk)
+
+    def assign_table(self, reservation):
+        date = reservation.date
+        time = reservation.time
+        guests = reservation.number_of_guests
+
+        available_tables = Table.objects.filter(capacity__gte=guests)
+        bookings_on_requested_date = Reservation.objects.filter(date=date, time=time)
+        booked_tables = [booking.table for booking in bookings_on_requested_date]
+        available_tables = [table for table in available_tables if table not in booked_tables]
+
+        if not available_tables:
+            return None
+
+        return min(available_tables, key=lambda table: table.capacity)
 
 class UpdateReservation(generic.edit.UpdateView):
     template_name = 'update_reservation.html'

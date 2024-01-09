@@ -9,5 +9,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('update_reservation/<int:pk>/', UpdateReservation.as_view(), name="update_reservation"),
     path('delete_reservation/<int:pk>/', DeleteReservation.as_view(), name="delete_reservation"),
-    path('reservation_detail/<int:pk>/', ReservationDetailView.as_view(), name="reservation_detail"),
+    path('reservation/<int:pk>/', ReservationDetailView.as_view(), name='reservation_detail'),
 ]

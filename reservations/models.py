@@ -16,6 +16,10 @@ BOOKING_TIME = (
     (datetime.time(20, 0), "8:00pm - 9:45pm"),
 )
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    role = models.IntegerField(default=2) 
+
 class Table(models.Model):
     # Table details
     table_number = models.IntegerField(unique=True)
