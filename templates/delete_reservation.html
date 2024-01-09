@@ -4,9 +4,9 @@
 
 <h2>Delete Reservation</h2>
 <p>Are you sure you want to delete this reservation?</p>
-<form method="post" action="{% url 'reservation:delete_reservation' pk=object.pk %}">
+<form method="post" action="{% url 'delete_reservation' pk=object.pk %}">
   {% csrf_token %}
   <button type="submit">Yes, delete it</button>
 </form>
-<a href="{% url 'reservation:view' %}">Cancel</a>
+<a href="{% url 'reservation_detail' pk=object.pk %}">Cancel</a>
 {% endblock %}

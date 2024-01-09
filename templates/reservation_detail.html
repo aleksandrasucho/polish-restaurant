@@ -63,6 +63,12 @@
             </tbody>
           {% endfor %}
         </table>
+        <!-- Add cancellation form here -->
+    <form method="post" action="{% url 'reservation:detail' reservation.id %}">
+        {% csrf_token %}
+        <button type="submit" name="cancel_reservation" class="btn btn-danger">Cancel Reservation</button>
+    </form>
+
       {% endif %}
     </div>
     <div class="create-btn">

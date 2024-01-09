@@ -1,4 +1,5 @@
 import logging
+import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
@@ -9,6 +10,8 @@ from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseForbidden
+from django.http import HttpResponseRedirect
+from django.http import Http404
 from django.views import generic
 from django.views.generic import DetailView
 from .forms import ReservationForm
@@ -42,6 +45,20 @@ class ReservationDetailView(LoginRequiredMixin, generic.DetailView):
             'reservation': reservation,
         }
         return render(request, 'reservation_detail.html', context)
+
+    def post(self, request, *args, **kwargs):
+        reservation_id = kwargs['pk']
+        reservation = get_object_or_404(Reservation, id=reservation_id, user=request.user)
+
+        if 'cancel_reservation' in request.POST:
+            if reservation.date >= datetime.date.today():
+                reservation.delete()
+                messages.success(request, "Reservation successfully canceled!")
+            else:
+                messages.error(request, "Cannot cancel past reservations.")
+            return HttpResponseRedirect(reverse('reservation:detail'))
+
+        return super().get(request, *args, **kwargs)
 
 class AddReservation(generic.CreateView):
     template_name = 'add_reservation.html'
@@ -116,17 +133,26 @@ class UpdateReservation(generic.edit.UpdateView):
 class DeleteReservation(generic.edit.DeleteView):
     template_name = 'delete_reservation.html'
     model = Reservation
-    success_url = reverse_lazy('reservation:detail')
+    success_url = reverse_lazy('home')  # Change 'home' to the actual name of the URL pattern you want to redirect to
 
     def get_object(self, queryset=None):
+        """This method returns the object that the view will display."""
         reservation = super().get_object(queryset=queryset)
-        if not (self.request.user.is_staff or self.request.user == reservation.user):
-            raise PermissionDenied("You are not authorized to edit this reservation.")
-        return reservation
+        if self.request.user.is_staff or self.request.user == reservation.user:
+            return reservation
+        else:
+            raise Http404("You are not authorized to edit this reservation.")
 
     def delete(self, request, *args, **kwargs):
+        """
+        After the reservation is deleted, this will show a notification
+        """
         reservation = self.get_object()
-        messages.success(self.request, f'Booking cancelled for {reservation.number_of_guests} guests on {reservation.date} at {reservation.get_time_display()}')
+        messages.success(
+            self.request,
+            f'Booking cancelled for {reservation.number_of_guests} '
+            f'guests on {reservation.date} at {reservation.get_time_display()}'
+        )
         return super().delete(request, *args, **kwargs)
 
 class InformationView(generic.TemplateView):
