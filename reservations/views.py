@@ -5,7 +5,7 @@ from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseForbidden
@@ -95,8 +95,10 @@ class UpdateReservation(generic.edit.UpdateView):
     template_name = 'update_reservation.html'
     model = Reservation
     form_class = ReservationForm
-    success_url = reverse_lazy('reservation:detail')
-
+    
+    def get_success_url(self):
+        return reverse('reservation_detail', kwargs={'pk': self.object.pk})
+    
     def get_object(self, queryset=None):
         reservation = super().get_object(queryset=queryset)
         if not (self.request.user.is_staff or self.request.user == reservation.user):
