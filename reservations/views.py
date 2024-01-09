@@ -40,7 +40,10 @@ class ReservationDetailView(LoginRequiredMixin, generic.DetailView):
 
     def get(self, request, *args, **kwargs):
         reservation_id = kwargs['pk']
-        reservation = get_object_or_404(Reservation, id=reservation_id, user=request.user)
+
+        # Ensure that the reservation belongs to the logged-in user and is not cancelled
+        reservation = get_object_or_404(Reservation, id=reservation_id, user=request.user, cancelled=False)
+
         context = {
             'reservation': reservation,
         }
@@ -48,18 +51,21 @@ class ReservationDetailView(LoginRequiredMixin, generic.DetailView):
 
     def post(self, request, *args, **kwargs):
         reservation_id = kwargs['pk']
-        reservation = get_object_or_404(Reservation, id=reservation_id, user=request.user)
+        
+        # Ensure that the reservation belongs to the logged-in user and is not cancelled
+        reservation = get_object_or_404(Reservation, id=reservation_id, user=request.user, cancelled=False)
 
         if 'cancel_reservation' in request.POST:
             if reservation.date >= datetime.date.today():
-                reservation.delete()
+                reservation.cancelled = True
+                reservation.save()
                 messages.success(request, "Reservation successfully canceled!")
             else:
                 messages.error(request, "Cannot cancel past reservations.")
-            return HttpResponseRedirect(reverse('reservation:detail'))
+            return HttpResponseRedirect(reverse('reservation:detail', kwargs={'pk': reservation_id}))
 
         return super().get(request, *args, **kwargs)
-
+    
 class AddReservation(generic.CreateView):
     template_name = 'add_reservation.html'
     form_class = ReservationForm
@@ -73,8 +79,7 @@ class AddReservation(generic.CreateView):
             if created:
                 user_profile.role = 2
                 user_profile.save()
-
-            logger.info("User is authenticated: %s", self.request.user)
+                
             reservation.user = self.request.user
         else:
             logger.info("User is not authenticated")

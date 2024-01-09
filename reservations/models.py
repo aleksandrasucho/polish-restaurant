@@ -40,6 +40,7 @@ class Reservation(models.Model):
     notes = models.TextField(null=True, blank=True)
     table = models.ForeignKey(Table, related_name="reservations", on_delete=models.CASCADE, blank=True,)
     number_of_guests = models.IntegerField()
+    cancelled = models.BooleanField(default=False)
     
     # String representation of a Reservation instance
     def __str__(self):
