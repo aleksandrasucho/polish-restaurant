@@ -1,4 +1,5 @@
 import logging
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required
@@ -29,29 +30,18 @@ class MenuView(generic.TemplateView):
     def get(self, request):
         return render(request, 'menu.html')
 
-class ReservationDetailView(generic.DetailView):
+class ReservationDetailView(LoginRequiredMixin, generic.DetailView):
     model = Reservation
     template_name = 'reservation_detail.html'
     context_object_name = 'reservation'
 
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            try:
-                user_profile = request.user.userprofile
-                if user_profile.role == 1:
-                    raise PermissionDenied("You don't have permission to view this page.")
-                else:
-                    reservation_id = kwargs['pk']
-                    reservation = get_object_or_404(Reservation, id=reservation_id)
-                    context = {
-                        'reservation': reservation,
-                    }
-                    return render(request, 'reservation_detail.html', context)
-            except UserProfile.DoesNotExist:
-                raise PermissionDenied("You don't have permission to view this page.")
-        else:
-            # If the user is not authenticated, you can redirect them to the login page
-            return HttpResponseForbidden("You don't have permission to view this page.")
+        reservation_id = kwargs['pk']
+        reservation = get_object_or_404(Reservation, id=reservation_id, user=request.user)
+        context = {
+            'reservation': reservation,
+        }
+        return render(request, 'reservation_detail.html', context)
 
 class AddReservation(generic.CreateView):
     template_name = 'add_reservation.html'
@@ -105,7 +95,7 @@ class UpdateReservation(generic.edit.UpdateView):
     template_name = 'update_reservation.html'
     model = Reservation
     form_class = ReservationForm
-    success_url = reverse_lazy('reservation:view')
+    success_url = reverse_lazy('reservation:detail')
 
     def get_object(self, queryset=None):
         reservation = super().get_object(queryset=queryset)
@@ -124,7 +114,7 @@ class UpdateReservation(generic.edit.UpdateView):
 class DeleteReservation(generic.edit.DeleteView):
     template_name = 'delete_reservation.html'
     model = Reservation
-    success_url = reverse_lazy('reservation:view')
+    success_url = reverse_lazy('reservation:detail')
 
     def get_object(self, queryset=None):
         reservation = super().get_object(queryset=queryset)
