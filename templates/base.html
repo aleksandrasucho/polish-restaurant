@@ -19,11 +19,11 @@
 
   {% block corecss %}
     {% comment %} Link to css {% endcomment %}
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
         rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
         crossorigin="anonymous">
-      <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
   {% endblock %}
 
   {% block jslibraries %}
@@ -54,10 +54,15 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'information' %}" aria-label="Go to Information page">Information</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add_reservation' %}" aria-label="Go to Reservations page">Book a Table</a>
+          </li>
           {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'add_reservation' %}" aria-label="Go to Reservations page">Reservation</a>
-            </li>
+            {% if user_reservations %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'reservation_detail' user_reservations.0.pk %}" aria-label="Go to Your Reservations page">Your Reservations</a>
+              </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'account_logout' %}" aria-label="Go to Logout page">Logout</a>
             </li>
@@ -80,46 +85,46 @@
   </main>
 
   <!-- Footer -->
-<footer class="footer mt-auto py-3 dark-bg">
-  <div class="container-fluid">
-    <div class="row footer-padding text-center">
-      <div class="col-md">
-        <h2 class="footer-h2"><strong>Opening Hours</strong></h2>
-        <p>
-          <strong>Monday - Friday:</strong> 09:00 - 22:00 <br>
-          <strong>Saturday - Sunday:</strong> 08:00 - 22:00
-        </p>
-      </div>
-      <div class="col-md">
-        <h2 class="footer-h2"><strong>Contact Us</strong></h2>
-        <p>
-          +44 20 1234 5678 <br>
-          info@polka-restaurant.com
-        </p>
-      </div>
-      <div class="col-md">
-        <h2 class="footer-h2"><strong>Find Us</strong></h2>
-        <p>
-          123 London Street <br>
-          Central London, WC1X 0AA
-        </p>
-      </div>
-      <div class="col-md">
-        <h2 class="footer-h2"><strong>Made By</strong></h2>
-        <p class="m-0">Aleksandra Suchojad</p>
-        <p class="m-0">
-          Follow us:
-          <a class="footer-links" href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" 
-          aria-label="Visit our Facebook page in a new tab"><i class="fab fa-facebook-square ms-3"></i></a>
-          <a class="footer-links" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"
-          aria-label="Visit our Instagram page in a new tab"><i class="fab fa-instagram-square ms-3"></i></a>
-        </p>
+  <footer class="footer mt-auto py-3 dark-bg">
+    <div class="container-fluid">
+      <div class="row footer-padding text-center">
+        <div class="col-md">
+          <h2 class="footer-h2"><strong>Opening Hours</strong></h2>
+          <p>
+            <strong>Monday - Friday:</strong> 09:00 - 22:00 <br>
+            <strong>Saturday - Sunday:</strong> 08:00 - 22:00
+          </p>
+        </div>
+        <div class="col-md">
+          <h2 class="footer-h2"><strong>Contact Us</strong></h2>
+          <p>
+            +44 20 1234 5678 <br>
+            info@polka-restaurant.com
+          </p>
+        </div>
+        <div class="col-md">
+          <h2 class="footer-h2"><strong>Find Us</strong></h2>
+          <p>
+            123 London Street <br>
+            Central London, WC1X 0AA
+          </p>
+        </div>
+        <div class="col-md">
+          <h2 class="footer-h2"><strong>Made By</strong></h2>
+          <p class="m-0">Aleksandra Suchojad</p>
+          <p class="m-0">
+            Follow us:
+            <a class="footer-links" href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" 
+            aria-label="Visit our Facebook page in a new tab"><i class="fab fa-facebook-square ms-3"></i></a>
+            <a class="footer-links" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"
+            aria-label="Visit our Instagram page in a new tab"><i class="fab fa-instagram-square ms-3"></i></a>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
-    <!-- Script for Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+  </footer>
+  <!-- Script for Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
     crossorigin="anonymous"></script>
   <!-- Script for notification message -->

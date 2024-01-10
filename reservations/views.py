@@ -24,14 +24,23 @@ logger = logging.getLogger(__name__)
 class HomeView(generic.TemplateView):
     template_name = 'home.html'
 
-    def get(self, request):
-        return render(request, 'home.html', {})
+    def get(self, request, *args, **kwargs):
+        # Example logic to retrieve user's reservations
+        user_reservations = []
+        if request.user.is_authenticated:
+            user_reservations = Reservation.objects.filter(user=request.user)
+
+        return render(request, self.template_name, {'user_reservations': user_reservations})
 
 class MenuView(generic.TemplateView):
     template_name = 'menu.html'
 
     def get(self, request):
-        return render(request, 'menu.html')
+        user_reservations = []
+        if request.user.is_authenticated:
+            user_reservations = Reservation.objects.filter(user=request.user)
+
+        return render(request, 'menu.html', {'user_reservations': user_reservations})
 
 class ReservationDetailView(LoginRequiredMixin, generic.DetailView):
     model = Reservation
@@ -44,8 +53,12 @@ class ReservationDetailView(LoginRequiredMixin, generic.DetailView):
         # Ensure that the reservation belongs to the logged-in user and is not cancelled
         reservation = get_object_or_404(Reservation, id=reservation_id, user=request.user, cancelled=False)
 
+        # Fetch all reservations for the current user
+        user_reservations = Reservation.objects.filter(user=request.user, cancelled=False)
+
         context = {
             'reservation': reservation,
+            'user_reservations': user_reservations,
         }
         return render(request, 'reservation_detail.html', context)
 
@@ -62,13 +75,28 @@ class ReservationDetailView(LoginRequiredMixin, generic.DetailView):
                 messages.success(request, "Reservation successfully canceled!")
             else:
                 messages.error(request, "Cannot cancel past reservations.")
-            return HttpResponseRedirect(reverse('reservation:detail', kwargs={'pk': reservation_id}))
+            
+        # Fetch all reservations for the current user after cancellation
+        user_reservations = Reservation.objects.filter(user=request.user, cancelled=False)
 
-        return super().get(request, *args, **kwargs)
+        context = {
+            'reservation': reservation,
+            'user_reservations': user_reservations,
+        }
+
+        return render(request, 'reservation_detail.html', context)
     
 class AddReservation(generic.CreateView):
     template_name = 'add_reservation.html'
     form_class = ReservationForm
+
+    def get(self, request, *args, **kwargs):
+        # Example logic to retrieve user's reservations
+        user_reservations = []
+        if request.user.is_authenticated:
+            user_reservations = Reservation.objects.filter(user=request.user)
+
+        return render(request, self.template_name, {'form': self.form_class, 'user_reservations': user_reservations})
 
     def form_valid(self, form):
         reservation = form.save(commit=False)
@@ -162,3 +190,11 @@ class DeleteReservation(generic.edit.DeleteView):
 
 class InformationView(generic.TemplateView):
     template_name = 'information.html'
+
+    def get(self, request, *args, **kwargs):
+        # Example logic to retrieve user's reservations
+        user_reservations = []
+        if request.user.is_authenticated:
+            user_reservations = Reservation.objects.filter(user=request.user)
+
+        return render(request, self.template_name, {'user_reservations': user_reservations})
