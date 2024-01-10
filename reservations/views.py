@@ -22,6 +22,10 @@ from .models import UserProfile
 logger = logging.getLogger(__name__)
 
 class HomeView(generic.TemplateView):
+    """
+    Home page view displaying user reservations.
+    """
+
     template_name = 'home.html'
 
     def get(self, request, *args, **kwargs):
@@ -33,6 +37,10 @@ class HomeView(generic.TemplateView):
         return render(request, self.template_name, {'user_reservations': user_reservations})
 
 class MenuView(generic.TemplateView):
+    """
+    Menu page view displaying user reservations.
+    """
+
     template_name = 'menu.html'
 
     def get(self, request):
@@ -43,6 +51,10 @@ class MenuView(generic.TemplateView):
         return render(request, 'menu.html', {'user_reservations': user_reservations})
 
 class ReservationDetailView(LoginRequiredMixin, generic.DetailView):
+    """
+    View displaying details of a reservation.
+    """
+
     model = Reservation
     template_name = 'reservation_detail.html'
     context_object_name = 'reservation'
@@ -87,6 +99,10 @@ class ReservationDetailView(LoginRequiredMixin, generic.DetailView):
         return render(request, 'reservation_detail.html', context)
     
 class AddReservation(generic.CreateView):
+    """
+    View for adding a new reservation.
+    """
+
     template_name = 'add_reservation.html'
     form_class = ReservationForm
 
@@ -142,6 +158,10 @@ class AddReservation(generic.CreateView):
         return min(available_tables, key=lambda table: table.capacity)
 
 class UpdateReservation(generic.edit.UpdateView):
+    """
+    View for updating a reservation.
+    """
+
     template_name = 'update_reservation.html'
     model = Reservation
     form_class = ReservationForm
@@ -164,6 +184,10 @@ class UpdateReservation(generic.edit.UpdateView):
         return super(UpdateReservation, self).form_valid(form)
 
 class DeleteReservation(generic.edit.DeleteView):
+    """
+    View for deleting a reservation.
+    """
+
     template_name = 'delete_reservation.html'
     model = Reservation
     success_url = reverse_lazy('home')  # Change 'home' to the actual name of the URL pattern you want to redirect to
@@ -189,6 +213,10 @@ class DeleteReservation(generic.edit.DeleteView):
         return super().delete(request, *args, **kwargs)
 
 class InformationView(generic.TemplateView):
+    """
+    View displaying information.
+    """
+
     template_name = 'information.html'
 
     def get(self, request, *args, **kwargs):
