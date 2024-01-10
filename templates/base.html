@@ -54,10 +54,11 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'information' %}" aria-label="Go to Information page">Information</a>
           </li>
+
+          {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'add_reservation' %}" aria-label="Go to Reservations page">Book a Table</a>
           </li>
-          {% if user.is_authenticated %}
             {% if user_reservations %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'reservation_detail' user_reservations.0.pk %}" aria-label="Go to Your Reservations page">Your Reservations</a>
