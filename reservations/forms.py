@@ -5,6 +5,7 @@ from django.utils import timezone
 from .models import Reservation, Table, CAPACITY, BOOKING_TIME
 
 class ReservationForm(forms.ModelForm):
+    # Customizing the time field with a dropdown
     time = forms.ChoiceField(choices=BOOKING_TIME, widget=forms.Select(attrs={'class': 'form-control'}))
 
     class Meta:
@@ -13,7 +14,7 @@ class ReservationForm(forms.ModelForm):
             'name', 'date', 'time', 'notes', 'number_of_guests', 'table'
         ]
         
-        
+        # Customizing the appearance of form fields
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'date': DateInput(attrs={'class': 'form-control', 'type': 'date'}),
@@ -22,6 +23,7 @@ class ReservationForm(forms.ModelForm):
             'table': forms.Select(attrs={'class': 'form-control'}),
         }
         
+        # Custom labels for form fields
         labels = {
             'name': 'Full Name',
         }
@@ -46,4 +48,4 @@ class ReservationForm(forms.ModelForm):
         if not available_tables.exists():
             self.add_error('number_of_guests', 'Sorry, no tables with sufficient capacity available')
             
-            return cleaned_data
+        return cleaned_data  # Return the cleaned data after validation
