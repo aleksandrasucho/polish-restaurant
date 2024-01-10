@@ -502,6 +502,7 @@ form a:hover {
     height: 100%;
 }
 
+/* Delete Reservation */
 .centered-content {
     display: flex;
     flex-direction: column;
