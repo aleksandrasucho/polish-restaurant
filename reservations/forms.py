@@ -26,24 +26,24 @@ class ReservationForm(forms.ModelForm):
             'name': 'Full Name',
         }
         
-def clean(self):
-    cleaned_data = super(ReservationForm, self).clean()
-    date = cleaned_data.get('date')
-    time = cleaned_data.get('time')
-    number_of_guests = cleaned_data.get('number_of_guests')
-    selected_table = cleaned_data.get('table')
+    def clean(self):
+        cleaned_data = super(ReservationForm, self).clean()
+        date = cleaned_data.get('date')
+        time = cleaned_data.get('time')
+        number_of_guests = cleaned_data.get('number_of_guests')
+        selected_table = cleaned_data.get('table')
 
-    # Check if the selected date is in the future
-    if date < timezone.now().date():
-        raise ValidationError('Sorry, you have to book a future date')
+        # Check if the selected date is in the future
+        if date < timezone.now().date():
+            self.add_error('date', 'Sorry, you have to book a future date')
 
-    # Check if there are reservations for the selected date and time
-    if Reservation.objects.filter(date=date, time=time).exists():
-        raise ValidationError('Sorry, no tables available for the selected date and time')
+        # Check if there are reservations for the selected date and time
+        if Reservation.objects.filter(date=date, time=time).exists():
+            self.add_error('date', 'Sorry, no tables available for the selected date and time')
 
-    # Check if there are tables with sufficient capacity for the number of guests
-    available_tables = Table.objects.filter(capacity__gte=number_of_guests)
-    if not available_tables.exists():
-        raise ValidationError('Sorry, no tables with sufficient capacity available')
-
-    return cleaned_data
+        # Check if there are tables with sufficient capacity for the number of guests
+        available_tables = Table.objects.filter(capacity__gte=number_of_guests)
+        if not available_tables.exists():
+            self.add_error('number_of_guests', 'Sorry, no tables with sufficient capacity available')
+            
+            return cleaned_data
