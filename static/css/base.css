@@ -465,39 +465,74 @@ form a:hover {
 .footer {
     background-color: #e87d66;
     padding: 40px 0;
-    color: white;  /* Set the text color to white */
+    color: white;
 }
 
 .footer-h2,
 .text-white,
 .footer-links {
-    color: white;  /* Set the text color to white for these elements */
+    color: white;
 }
 
 .footer-links i {
-    font-size: 24px;  /* Adjust the size as needed */
+    font-size: 24px;
 }
 
 .information-container {
     display: flex;
     align-items: stretch;
-  }
+}
 
-  .col-md-8 {
+.col-md-8 {
     display: flex;
     flex-direction: column;
-  }
+}
 
-  .col-md-4 {
+.col-md-4 {
     display: flex;
     align-items: stretch;
-  }
+}
 
-  .card {
+.card {
     flex: 1;
-  }
+}
 
-  .card-img-top {
+.card-img-top {
     object-fit: cover;
     height: 100%;
-  }
+}
+
+.centered-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.btn-delete {
+    background-color: #e87d66;
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background-color: #a03622;
+}
+
+.btn-cancel {
+    color: #e87d66;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.btn-cancel:hover {
+    color: #a03622;
+}
