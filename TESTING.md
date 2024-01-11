@@ -166,14 +166,16 @@ The python code was tested using [Coding Institutes Python Linter](https://pep8c
 
 * **models.py**<br>
 
+![Full Python Validation Report](documentation/validation/models-validation.png)
 
-
-* **test_forms.py**<br>
-
-
-
-* **test_views.py**<br>
 
 
 </details>
 <br>
+
+---
+## Lighthouse Report
+
+### Home Page
+
+![Lighthouse Report. Home Page](documentation/lighthouse_reports/lighthouse_home.png)
