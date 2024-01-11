@@ -104,3 +104,47 @@ Please refer to the [FEATURES.md](FEATURES.md) file for all features-related doc
 
 
 ---
+
+## Design
+
+The design of the application is based on the Material Design principles.
+The central theme of the application is the simplicity of use. Thus, all the components are designed to be easy to use. The minimalistic approach was used to create something meaningful without moving out of focus.
+### Color Scheme
+
+  ![Color Scheme](documentation/design/color-scheme.png)
+
+  
+The website features a modern color scheme:
+
+ - Hero Section: Dark background with a subtle overlay (rgba(0, 0, 0, 0.5)).
+
+- Primary Button: Vibrant green (#4CAF50) with a darker hover effect (#45a049).
+
+- Navbar: Energetic background color (#e87d66) with contrasting white text.
+
+- About Section: Clean light background (#f8f8f8) with an accent color (#e87d66).
+
+- Opening Hours Section: Professional appearance with a white background and dark text (#333).
+
+- Sign-In Page: Organized interface with light background (#f8f8f8) and green accents.
+
+- Menu Section: Energetic orange accent color (#e87d66) for headings and buttons.
+
+- Information Container: Consistent design with light background (#f8f8f8) and accent color (#e87d66).
+
+- Card Styling: Modern appearance with a subtle box shadow (rgba(0, 0, 0, 0.1)) and light border (#ddd).
+
+- Footer: Bold and vibrant background color (#e87d66) for a strong visual anchor.
+
+- Delete Reservation and Password Reset Sections: Cohesive design with accent color (#e87d66) for buttons and hover effects.
+
+In summary, the color scheme combines warmth, vibrancy, and professionalism, creating a visually appealing and user-friendly website.
+
+### Typography
+
+The website pays careful attention to typography for a harmonious and readable user experience. Utilizes the "Inter" sans-serif font for a clean and modern look.
+
+![Typography](documentation/design/inter-300.png)
+
+
+
