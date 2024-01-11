@@ -120,3 +120,11 @@ There were plenty of bugs during the development process since this project was 
 2. gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3> django
 - *Solutions:* The issue has been resolved by investigating and fixing the underlying cause, allowing the Gunicorn server to start successfully.
 
+---
+
+## Validation:
+### HTML Validation:
+
+- [Full HTML Validation Report](documentation/validation)
+
+- No errors or warnings were found when passing through the official [W3C](https://validator.w3.org/) validator. This checking was done manually by copying the view page source code (Ctrl+U) and pasting it into the validator.
