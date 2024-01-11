@@ -75,7 +75,7 @@ body {
 
 /* Primary button styling */
 .btn-primary {
-    background-color: #e87d66;
+    background-color: #4CAF50; /* Change this color to your desired button color */
     color: white;
     font-weight: 600;
     border: none;
@@ -86,7 +86,7 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #a03622;
+    background-color: #45a049; /* Change this color for the hover effect */
 }
 
 /* Navbar styling */
@@ -235,7 +235,7 @@ body {
 }
 
 .sign-in-container .btn-primary {
-    background-color: #e87d66;
+    background-color: #4CAF50;
     color: white;
     font-weight: 600;
     border: none;
@@ -246,7 +246,7 @@ body {
 }
 
 .sign-in-container .btn-primary:hover {
-    background-color: #a03622;
+    background-color: #45a049;
 }
 
 /* Sign-Up Form Styling */
@@ -267,7 +267,7 @@ form input[type="password"] {
 }
 
 form button {
-    background-color: #e87d66;
+    background-color: #4CAF50;
     color: white;
     font-weight: 600;
     border: none;
@@ -279,7 +279,7 @@ form button {
 }
 
 form button:hover {
-    background-color: #a03622;
+    background-color: #45a049;
 }
 
 form p {
