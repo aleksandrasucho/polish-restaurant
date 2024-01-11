@@ -128,7 +128,6 @@ There were plenty of bugs during the development process since this project was 
 - [Full HTML Validation Report](documentation/validation/html-validator.png)
 
 - No errors or warnings were found when passing through the official [W3C](https://validator.w3.org/) validator.
-![Alt text](image.png)
 
 ### CSS Validation:
 
@@ -138,6 +137,43 @@ There were plenty of bugs during the development process since this project was 
 
 ### JS Validation:
 
-- [Full JS Validation Report](documentation/validation)
+No JavaScript has been employed in this project. 
 
-- No errors or warning messages were found when passing through the official [JSHint](https://www.jshint.com/) validator. However, the validator has pointed out that the module variable is not used, but this variable is needed for automated testing. Needless to say, as the modern js syntax was used (the Optional Chaining method - `?.`) `/* jshint esversion: 11 */` was added to the top of the file.
+### Python Validation:
+
+- [Full Python Validation Report](documentation/validation/python_validation.pdf)
+
+The python code was tested using [Coding Institutes Python Linter](https://pep8ci.herokuapp.com/).
+
+**Pep8 results:**<br>
+<details>
+<summary>Reservation app</summary>
+
+* **apps.py**<br>
+
+![Full Python Validation Report](documentation/validation/apps-validation.png)
+* **urls.py**<br>
+
+![Full Python Validation Report](documentation/validation/apps-validation.png)
+
+* **views.py**<br>
+
+
+
+* **forms.py**<br>
+
+
+
+* **models.py**<br>
+
+
+
+* **test_forms.py**<br>
+
+
+
+* **test_views.py**<br>
+
+
+</details>
+<br>
