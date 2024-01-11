@@ -507,6 +507,18 @@ form a:hover {
     height: 100%;
 }
 
+.reservation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 40vh;
+}
+
+.reservations-table {
+    margin-top: 20px; 
+}
+
 .reservation-section {
     display: flex;
     flex-direction: column;
