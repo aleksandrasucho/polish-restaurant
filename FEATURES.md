@@ -62,3 +62,24 @@ When the user is logged in and has existing reservations, the navbar looks as fo
 It has an additional Your Reservations page
 - your reservations
 - ![your reservations button](documentation/features/navbar/your-reservations-btn.png)
+
+
+
+**Footer**
+
+![Footer](documentation/features/footer/footer.png)
+
+Footer has the following sections:
+
+- Opening Hours:
+- ![Opening hours](documentation/features/footer/opening-hours.png)
+
+- Contact Us:
+- ![Contact us](documentation/features/footer/contact-us.png)
+
+- Find us:
+- ![Find us](documentation/features/footer/find-us.png)
+
+- Made by:
+- ![Made by](documentation/features/footer/made-by.png)
+
