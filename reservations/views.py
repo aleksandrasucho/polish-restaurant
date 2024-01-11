@@ -18,8 +18,10 @@ from .forms import ReservationForm
 from .models import Reservation, Table, UserProfile
 from .models import UserProfile
 
+
 # Set up the logger
 logger = logging.getLogger(__name__)
+
 
 class HomeView(generic.TemplateView):
     """
@@ -34,7 +36,12 @@ class HomeView(generic.TemplateView):
         if request.user.is_authenticated:
             user_reservations = Reservation.objects.filter(user=request.user)
 
-        return render(request, self.template_name, {'user_reservations': user_reservations})
+        return render(
+            request,
+            self.template_name,
+            {'user_reservations': user_reservations}
+        )
+
 
 class MenuView(generic.TemplateView):
     """
@@ -48,7 +55,12 @@ class MenuView(generic.TemplateView):
         if request.user.is_authenticated:
             user_reservations = Reservation.objects.filter(user=request.user)
 
-        return render(request, 'menu.html', {'user_reservations': user_reservations})
+        return render(
+            request,
+            'menu.html',
+            {'user_reservations': user_reservations}
+        )
+
 
 class ReservationDetailView(LoginRequiredMixin, generic.DetailView):
     """
@@ -62,11 +74,15 @@ class ReservationDetailView(LoginRequiredMixin, generic.DetailView):
     def get(self, request, *args, **kwargs):
         reservation_id = kwargs['pk']
 
-        # Ensure that the reservation belongs to the logged-in user and is not cancelled
-        reservation = get_object_or_404(Reservation, id=reservation_id, user=request.user, cancelled=False)
+# Ensure that the reservation belongs to the logged-in user and is not cancelled
+        reservation = get_object_or_404(
+            Reservation, id=reservation_id, user=request.user, cancelled=False
+        )
 
         # Fetch all reservations for the current user
-        user_reservations = Reservation.objects.filter(user=request.user, cancelled=False)
+        user_reservations = Reservation.objects.filter(
+            user=request.user, cancelled=False
+        )
 
         context = {
             'reservation': reservation,
@@ -77,8 +93,11 @@ class ReservationDetailView(LoginRequiredMixin, generic.DetailView):
     def post(self, request, *args, **kwargs):
         reservation_id = kwargs['pk']
         
-        # Ensure that the reservation belongs to the logged-in user and is not cancelled
-        reservation = get_object_or_404(Reservation, id=reservation_id, user=request.user, cancelled=False)
+# Ensure that the reservation belongs to the logged-in user and is not cancelled
+        reservation = get_object_or_404(
+            Reservation, id=reservation_id, user=request.user, cancelled=False
+        )
+
 
         if 'cancel_reservation' in request.POST:
             if reservation.date >= datetime.date.today():
@@ -89,7 +108,9 @@ class ReservationDetailView(LoginRequiredMixin, generic.DetailView):
                 messages.error(request, "Cannot cancel past reservations.")
             
         # Fetch all reservations for the current user after cancellation
-        user_reservations = Reservation.objects.filter(user=request.user, cancelled=False)
+        user_reservations = Reservation.objects.filter(
+            user=request.user, cancelled=False
+        )
 
         context = {
             'reservation': reservation,
@@ -97,7 +118,8 @@ class ReservationDetailView(LoginRequiredMixin, generic.DetailView):
         }
 
         return render(request, 'reservation_detail.html', context)
-    
+
+
 class AddReservation(generic.CreateView):
     """
     View for adding a new reservation.
@@ -112,13 +134,19 @@ class AddReservation(generic.CreateView):
         if request.user.is_authenticated:
             user_reservations = Reservation.objects.filter(user=request.user)
 
-        return render(request, self.template_name, {'form': self.form_class, 'user_reservations': user_reservations})
+        return render(
+            request,
+            self.template_name,
+            {'form': self.form_class, 'user_reservations': user_reservations}
+        )
 
     def form_valid(self, form):
         reservation = form.save(commit=False)
 
         if self.request.user.is_authenticated:
-            user_profile, created = UserProfile.objects.get_or_create(user=self.request.user)
+            user_profile, created = UserProfile.objects.get_or_create(
+                user=self.request.user
+            )
 
             if created:
                 user_profile.role = 2
@@ -131,7 +159,11 @@ class AddReservation(generic.CreateView):
         selected_table = self.assign_table(reservation)
 
         if not selected_table:
-            messages.error(self.request, "No tables available for the selected date and time.")
+            messages.error(
+            self.request,
+            "No tables available for the selected date and time."
+            )
+
             return render(self.request, self.template_name, {'form': form})
 
         reservation.table = selected_table
@@ -148,14 +180,23 @@ class AddReservation(generic.CreateView):
         guests = reservation.number_of_guests
 
         available_tables = Table.objects.filter(capacity__gte=guests)
-        bookings_on_requested_date = Reservation.objects.filter(date=date, time=time)
-        booked_tables = [booking.table for booking in bookings_on_requested_date]
-        available_tables = [table for table in available_tables if table not in booked_tables]
+        bookings_on_requested_date = Reservation.objects.filter(
+            date=date, time=time
+        )
+        booked_tables = [
+            booking.table for booking in bookings_on_requested_date
+        ]
+
+        available_tables = [
+            table for table in available_tables if table not in booked_tables
+        ]
+
 
         if not available_tables:
             return None
 
         return min(available_tables, key=lambda table: table.capacity)
+
 
 class UpdateReservation(generic.edit.UpdateView):
     """
@@ -171,8 +212,12 @@ class UpdateReservation(generic.edit.UpdateView):
     
     def get_object(self, queryset=None):
         reservation = super().get_object(queryset=queryset)
-        if not (self.request.user.is_staff or self.request.user == reservation.user):
-            raise PermissionDenied("You are not authorized to edit this reservation.")
+        if not (
+            self.request.user.is_staff or self.request.user == reservation.user
+        ):
+            raise PermissionDenied(
+                "You are not authorized to edit this reservation."
+            )
         return reservation
 
     def form_valid(self, form):
@@ -183,6 +228,7 @@ class UpdateReservation(generic.edit.UpdateView):
         messages.success(self.request, f'Booking updated for {guests} guests on {date} at {form.instance.get_time_display()}')
         return super(UpdateReservation, self).form_valid(form)
 
+
 class DeleteReservation(generic.edit.DeleteView):
     """
     View for deleting a reservation.
@@ -190,7 +236,7 @@ class DeleteReservation(generic.edit.DeleteView):
 
     template_name = 'delete_reservation.html'
     model = Reservation
-    success_url = reverse_lazy('home')  # Change 'home' to the actual name of the URL pattern you want to redirect to
+    success_url = reverse_lazy('home')
 
     def get_object(self, queryset=None):
         """This method returns the object that the view will display."""
@@ -212,6 +258,7 @@ class DeleteReservation(generic.edit.DeleteView):
         )
         return super().delete(request, *args, **kwargs)
 
+
 class InformationView(generic.TemplateView):
     """
     View displaying information.
@@ -225,4 +272,8 @@ class InformationView(generic.TemplateView):
         if request.user.is_authenticated:
             user_reservations = Reservation.objects.filter(user=request.user)
 
-        return render(request, self.template_name, {'user_reservations': user_reservations})
+        return render(
+        request, 
+        self.template_name, 
+        {'user_reservations': user_reservations}
+        )
