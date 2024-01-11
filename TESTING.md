@@ -76,3 +76,31 @@ Usability was tested with the below user acceptance testing, sent to new users t
 | 3           |  Click "delete" button | Redirect to home page | Y | Available only when the user is logged in and has a reservation created  |
 | Reset Password |            |                  |      |             |
 |1                | Enter valid email | Field will only accept valid email address | Y |  Available to everyone |
+
+---
+
+## Testing User Story
+
+| First Time Visitor Goals | Requirement met | Image |
+| ------------------------- | --------------- | ----- |
+| As a First Time Visitor, I want to be able to easily understand the main purpose of the app, so that I can learn more about this app. | Welcome text on the top of the homepage explaining the main purpose of the website | ![Home page](documentation/features/home-page/home-page.png) |
+| As a First Time Visitor, I want to be able to easily navigate through the app, so that I can find the content.| The navigation bar is clear and user-friendly, providing quick access to different sections of the app. | ![NAV bar](documentation/features/navbar/navbar-loggedin.png) |
+| As a First Time Visitor, I want to be able to register my account, so that I can manage my reservations.| Top navigation Login + Log in button in the hero section | ![Navbar Logout](documentation/features/navbar/login-btn.png) |
+| As a First Time Visitor, I want to be able to see contact information on the website so that I can call or email in case I have any inquiries.| All contact details are on every page in the footer section | ![Footer](documentation/features/footer/footer.png) |
+As a First Time Visitor, I want to be able to see the opening and closing hours so that I can plan my dinner visit.| The opening and closing hours are on every page in the footer section + at the bottom of home and information page | ![Footer](documentation/features/footer/footer.png) |
+|As a First Time Visitor, I can select a time and date to finalize my reservation.| Options in the Make a Reservation page |![Book a Table](documentation/features/book-a-table-page/book-a-table-page.png) |
+
+| Frequent Visitor Goals    | Requirement met | Image |
+| ------------------------- | --------------- | ----- |
+|As a Frequent User, I want to be able to log in to my account, so that I can have a personal account.| Log in from the top right navigation | ![Log in](documentation/features/navbar/login-btn.png) |
+|As a Frequent User, I want to be able to log out of my account, so that I keep my account secure.| Logout from the top right navigation | ![Log out](documentation/features/logout-page/logout.png) |
+|As a Frequent User, I want to be able to easily log in and log out, so that I can access my personal account information. |Log in and out from the top right navigation | ![Log in](documentation/features/navbar/login-btn.png) ![Log out](documentation/features/logout-page/logout.png) |
+|As a Frequent User, I can reset my password by sending a link so that I can log in even if I forget my password.| Available while logging in | ![Reset Password](documentation/features/reset-password/reset-password.png) |
+|As a Frequent User, I can find relevant information about the restaurant so that I can plan my visit more easily| About sectioan on the home page |  ![About section](documentation/features/home-page/restaurant-description.png) |
+|As a Frequent User, I can see available tables for a specific date and time so that I can easier decide where to sit.| Available while creating a reservation | ![Book a Table](documentation/features/book-a-table-page/book-a-table-page.png) |
+
+| Logged-in User    | Requirement met | Image |
+| ------------------------- | --------------- | ----- |
+|As a logged-in user, I can see my reservations list for a better overview.| Available on Your Reservations page. | ![Your Reservation](documentation/features/your-reservations-page/your-reservations-page.png) |
+|As a logged-in user, I can cancel reservations so that I have control over my bookings|Available on Your Reservations page. | ![Your Reservation](documentation/features/your-reservations-page/your-reservations-page.png) |
+|As a logged in user, I want to be able to update my reservation in case of any changes.| Available on Your Reservations page. | ![Your Reservation](documentation/features/your-reservations-page/your-reservations-page.png) |
