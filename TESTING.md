@@ -104,3 +104,19 @@ As a First Time Visitor, I want to be able to see the opening and closing hours 
 |As a logged-in user, I can see my reservations list for a better overview.| Available on Your Reservations page. | ![Your Reservation](documentation/features/your-reservations-page/your-reservations-page.png) |
 |As a logged-in user, I can cancel reservations so that I have control over my bookings|Available on Your Reservations page. | ![Your Reservation](documentation/features/your-reservations-page/your-reservations-page.png) |
 |As a logged in user, I want to be able to update my reservation in case of any changes.| Available on Your Reservations page. | ![Your Reservation](documentation/features/your-reservations-page/your-reservations-page.png) |
+
+## Bugs
+
+### Known bugs
+When attempting to create an additional reservation while already in the "Your Reservations" section, the existing reservation is unintentionally deleted.
+
+### Solved bugs
+
+There were plenty of bugs during the development process since this project was a learning platform for me and allowed me to improve my skills and knowledge significantly.
+
+1. Django Improperly Configured Error: I encountered the django.core.exceptions.ImproperlyConfigured: allauth.account.middleware.AccountMiddleware must be added to settings.MIDDLEWARE error.
+- *Solutions:* The issue has been addressed by adding allauth.account.middleware.AccountMiddleware to the settings.MIDDLEWARE as per the Django configuration requirements.
+
+2. gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3> django
+- *Solutions:* The issue has been resolved by investigating and fixing the underlying cause, allowing the Gunicorn server to start successfully.
+
