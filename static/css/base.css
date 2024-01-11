@@ -507,6 +507,23 @@ form a:hover {
     height: 100%;
 }
 
+.reservation-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    margin-top: 5vh;
+}
+
+/* Style for the submit button */
+.submit-res-btn {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Delete Reservation */
 .centered-content {
     display: flex;
