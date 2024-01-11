@@ -147,4 +147,76 @@ The website pays careful attention to typography for a harmonious and readable u
 ![Typography](documentation/design/inter-300.png)
 
 
+### Wireframes
 
+- [Desktop Wireframes](documentation/wireframes/)
+
+---
+
+## Flowcharts
+
+The following flowcharts were created to help to understand the application and its functionality.
+
+The flowcharts were created using [Draw.io](https://www.lucidchart.com/).
+
+![Flowchart](documentation/flowchart/flowchart.png)
+
+---
+
+## Information Architecture
+
+### Database
+
+* During the earliest stages of the project, the database was created using SQLite.
+* The database was then migrated to PostgreSQL.
+
+### Entity-Relationship Diagram
+
+* The ERD was created using [Draw.io](https://www.lucidchart.com/).
+
+- [Database Scheme](documentation/diagrams/db_final.png)
+
+---
+## Testing
+
+Please refer to the [TESTING.md](TESTING.md) file for all test-related documentation.
+
+
+
+---
+
+## Deployment
+
+
+- The app was deployed to [Heroku](https://www.heroku.com/).
+- The database was deployed to [ElephantSQL](https://www.elephantsql.com/).
+
+- The app can be reached by the [link](#).
+
+Please refer to the [DEPLOYMENT.md](DEPLOYMENT.md) file for all deployment-related documentation.
+
+---
+
+## Credits
+
+- [GitHub](https://github.com/) for giving the idea of the project's design.
+- [Django](https://www.djangoproject.com/) for the framework.
+- [ElephantSQL](https://www.elephantsql.com/): for the free hosting of the database.
+- [Font awesome](https://fontawesome.com/): for the free access to icons.
+- [Heroku](https://www.heroku.com/): for the free hosting of the website.
+- [jQuery](https://jquery.com/): for providing varieties of tools to make standard HTML code look appealing.
+- [Coolors](https://coolors.co/): for providing a free platform to generate your own palette.
+- [Icons8](https://icons8.com/): for providing free access to amazing icons and illustrations.
+- [Postgresql](https://www.postgresql.org/): for providing a free database.
+- [Codemy.com](https://www.youtube.com/watch?v=N-PB-HMFmdo): for providing a free video on how to implement pagination in the project.
+- [Responsive Viewer](https://chrome.google.com/webstore/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb/related?hl=en): for providing a free platform to test website responsiveness
+- [GoFullPage](chrome://extensions/?id=fdpohaocaechififmbbbbbknoalclacl): for allowing to create free full web page screenshots;
+- [Favicon Generator. For real.](https://realfavicongenerator.net/): for providing a free platform to generate favicons.
+
+---
+
+## Acknowledgments
+
+
+- [Juliia Konovalova ](https://github.com/IuliiaKonovalova) was a great supporter. She guided me through the development of the project and helped me to learn a lot of new things by challenging me to do something new.
+- [Code Institute](https://codeinstitute.net/) tutors and Slack community members for their support and help.
