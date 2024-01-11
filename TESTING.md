@@ -158,11 +158,11 @@ The python code was tested using [Coding Institutes Python Linter](https://pep8c
 
 * **views.py**<br>
 
-![Full Python Validation Report](documentation/validation)
+![Full Python Validation Report](documentation/validation/views-validation.png)
 
 * **forms.py**<br>
 
-
+![Full Python Validation Report](documentation/validation/views-validation.png)
 
 * **models.py**<br>
 
