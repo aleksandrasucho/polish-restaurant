@@ -507,6 +507,11 @@ form a:hover {
     height: 100%;
 }
 
+.container {
+    margin-top: 10vh;
+    padding: 20px;
+}
+
 .reservation-container {
     display: flex;
     flex-direction: column;
