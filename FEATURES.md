@@ -83,3 +83,25 @@ Footer has the following sections:
 - Made by:
 - ![Made by](documentation/features/footer/made-by.png)
 
+For the mobile version of the website, the footer looks as follows:
+
+  ![Footer Mobile](documentation/features/footer/mobile-footer.png)
+
+**Home page**
+
+![Home page when not logged in](documentation/features/home-page/home-page-not-loggedin.png)
+
+The Home page has a simple welcome message and a button "Log in to Book a Table" which leads to the login page. However, if the user is logged in the Home Page looks as follows:
+
+![Home page when logged in](documentation/features/home-page/home-page.png)
+
+
+- ![Home page Hero section](documentation/features/home-page/hero-section.png)
+
+Under the hero section, there is a section, which describes the restaurant.
+
+- ![Restaurant description](documentation/features/home-page/restaurant-description.png)
+
+Under the restaurant description section, there is aa section with opening hours.
+
+- ![Opening Hours](documentation/features/home-page/opening-hours-section.png)
