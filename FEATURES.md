@@ -154,3 +154,54 @@ It has the title "Sign out" and the subtitle "Are you sure you want to aign out?
 Underneath, there is a button "Sign Out".
 
   ![Logout page buttons](documentation/features/logout-page/signout-button.png)
+
+**Forgot password page**
+
+  ![Reset password page](documentation/features/reset-password/reset-password.png)
+
+ It has a reset password form with a header and input fields for the user to fill in and a reset button.
+
+ ![Reset password page header](documentation/features/reset-password/reset-password-header.png)
+
+The header has the title "Password Reset" and a subtitle, which guides the user on what actions should be done in order to regain access to the user's account.
+
+  ![Reset password page header](documentation/features/reset-password/reset-password-field.png)
+
+Underneath, there are fields, where the user can type in his email address.
+
+If the user types a wrong email address, the email field will be highlighted.
+
+There is a button "Reset My Password," which leads to the home page. The user will receive an email with a link to reset his password.
+
+  ![Reset password page button](documentation/features/reset-password/reset-password-btn.png)
+  
+**Signup page**
+
+  ![Signup page](documentation/features/signup-page/signup-page.png)
+
+Signup Page has a signup form, which has a header and input fields for the user to fill in. Plus it has a button "Sign up".
+
+**Book a table page**
+  ![Book a table page](documentation/features/book-a-table-page/book-a-table-page.png)
+
+Every user that is authenticated can access the *Reservation* page for making a reservation. This feature provides a form where the user can fill in the reservation details.
+* The form is for selecting the date and time interval of the booking.
+    The inputs are validated after the following rules:
+    * The Date value should not be less than the current day;<br>
+    * Entering Name, date and number of people is required;<br>
+    * Maximum number of guests for a reservation is 8 people;<br>
+    * The user can choose times from a list;
+      * 1: 12:00 - 12:45
+      * 2: 14:00 - 15:45
+      * 3: 16:00 - 17:45
+      * 4: 18:00 - 19:45
+      * 5: 20:00 - 21:45
+
+**Your Reservations page**
+  ![Your Reservations page](documentation/features/your-reservations-page/your-reservations-page.png)
+
+  Every client that is authenticated can access the *Reservation* page where they have an overview over their reservations.
+* From this view they can select to:
+    * Create a new reservation;<br>
+    * Edit an existing reservation;<br>
+    * Delete a reservation;<br>
