@@ -105,3 +105,13 @@ Under the hero section, there is a section, which describes the restaurant.
 Under the restaurant description section, there is aa section with opening hours.
 
 - ![Opening Hours](documentation/features/home-page/opening-hours-section.png)
+
+
+**Menu page**
+
+  ![Menu page](documentation/features/menu-page/menu-page.png)
+
+The "Menu" section allows users to easily browse through categorized dishes.
+
+**Information page**
+  ![Information page](documentation/features/information-page)
