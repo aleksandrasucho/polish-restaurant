@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+<div class="d-flex flex-column align-items-center">
+    <h1 class="sub-page-title padding">500 Internal Server Error</h1>
+    <p>Don't worry, this is us not you!</p>
+
+    <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+</div>
+</div>
+{% endblock %}
