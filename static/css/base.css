@@ -576,3 +576,34 @@ form a:hover {
 .btn-cancel:hover {
     color: #a03622;
 }
+
+.password-reset-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    max-width: 600px;
+    width: 80%;
+    margin: 0 auto;
+    
+}
+
+
+.password-reset-content h1 {
+    font-size: 2.5rem;
+    color: #333; /* Adjust text color */
+    /* ... (other styles) */
+}
+
+.password-reset-content p {
+    font-size: 1.2rem;
+    color: #555; /* Adjust text color */
+    line-height: 1.6;
+    /* ... (other styles) */
+}
+
+.submit-res-btn {
+    margin-top: 20px;
+    text-align: center;
+}

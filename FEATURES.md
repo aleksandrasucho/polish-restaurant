@@ -114,4 +114,43 @@ Under the restaurant description section, there is aa section with opening hours
 The "Menu" section allows users to easily browse through categorized dishes.
 
 **Information page**
-  ![Information page](documentation/features/information-page)
+  ![Information page](documentation/features/information-page/information-page.png)
+
+The Information page contains the story of the restaurant and opening hours section. 
+
+
+**Login page**
+
+  ![Login page](documentation/features/login-page/login-page.png)
+
+Login Page has a container with a login form, which has a header and input fields for the user to fill in. Plus it has a button "Sign In" and "Forgot password?", leading to the forgot password page.
+
+ ![Login page header](documentation/features/login-page/login-header.png)
+
+The header has the title "Log in" and the subtitle "If you have not created an account yet, then please sign up first."
+
+When the user clicks on the button, he is redirected to the registration page.
+
+Underneath, there are two fields which have to be filled out in order to log in:
+
+- Username
+- Password
+
+  ![Login page fields](documentation/features/login-page/login-input.png)
+
+Under the fields, there is a button "Sign in" which leads to the schedule page.
+
+  ![Login page sign in button](documentation/features/login-page/signin-button.png)
+
+**Logout page**
+
+  ![Logout page](documentation/features/logout-page/logout-page.png)
+
+This page has a logout form with a header and a button "Sign Out" leading to the home page.
+
+  ![Logout page header](documentation/features/logout-page/logout-page-container.png)
+
+It has the title "Sign out" and the subtitle "Are you sure you want to aign out?"
+Underneath, there is a button "Sign Out".
+
+  ![Logout page buttons](documentation/features/logout-page/signout-button.png)
