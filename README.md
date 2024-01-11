@@ -96,3 +96,11 @@ Built specifically for Polka Restaurant, this web application boasts a user-frie
 
 
 ---
+
+## FEATURES
+
+Please refer to the [FEATURES.md](FEATURES.md) file for all features-related documentation.
+
+
+
+---
