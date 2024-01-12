@@ -178,4 +178,55 @@ The python code was tested using [Coding Institutes Python Linter](https://pep8c
 
 ### Home Page
 
-![Lighthouse Report. Home Page](documentation/lighthouse_reports/lighthouse_home.png)
+![Lighthouse Report. Home Page](documentation/lighthouse-reports/homepage-lighthouse.png)
+
+### Menu Page
+
+![Lighthouse Report. Menu Page](documentation/lighthouse-reports/menupage-lighthouse.png)
+
+### Information Page
+
+![Lighthouse Report. Information Page](documentation/lighthouse-reports/infopage-lighthouse.png)
+
+### Login Page
+
+![Lighthouse Report. Login Page](documentation/lighthouse-reports/login-lighthouse.png)
+
+### Signup Page
+
+![Lighthouse Report. Signup Page](documentation/lighthouse-reports/signup-lighthouse.png)
+
+### Reset Password Page
+
+![Lighthouse Report. Reset Password Page](documentation/lighthouse-reports/reset-password-lighthouse.png)
+
+### Book a Table Page
+
+![Lighthouse Report. Book a Table Page](documentation/lighthouse-reports/book-a-table-lighthouse.png)
+
+### Your Reservations
+
+![Lighthouse Report. Your Reservations Page](documentation/lighthouse-reports/your-reservatrions-lighthouse.png)
+
+### Update Reservation
+
+![Lighthouse Report. Update Reservation Page](documentation/lighthouse-reports/update-lighthouse.png)
+
+### Delete Reservation
+
+![Lighthouse Report. Delete Reservation Page](documentation/lighthouse-reports/delete-lighthouse.png)
+
+### Logout Page
+
+![Lighthouse Report. Logout Page](documentation/lighthouse-reports/LOGOUT-LIGHTHOUSE.png)
+
+---
+
+## Compatibility
+
+Testing was conducted on the following browsers;
+
+- Brave;
+- Chrome;
+- Firefox;
+
