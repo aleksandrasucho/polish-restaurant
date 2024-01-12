@@ -114,12 +114,39 @@ When attempting to create an additional reservation while already in the "Your R
 
 There were plenty of bugs during the development process since this project was a learning platform for me and allowed me to improve my skills and knowledge significantly.
 
+
 1. Django Improperly Configured Error: I encountered the django.core.exceptions.ImproperlyConfigured: allauth.account.middleware.AccountMiddleware must be added to settings.MIDDLEWARE error.
 - *Solutions:* The issue has been addressed by adding allauth.account.middleware.AccountMiddleware to the settings.MIDDLEWARE as per the Django configuration requirements.
 
 2. gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3> django
 - *Solutions:* The issue has been resolved by investigating and fixing the underlying cause, allowing the Gunicorn server to start successfully.
 
+
+3. I realized that my .gitiignore file was not ignoring the db.sqlite3 file, however, it was stating the .gitiignore file 
+```python
+    *.sqlite3
+    db.sqlite3
+```
+*Solution:*
+
+At the very beginning, I used the following command:
+
+```
+git update-index --assume-unchanged db.sqlite3
+```
+
+But the output was: ```fatal: Unable to mark file db.sqlite3```
+
+So, I user the following command for reset:
+
+```
+git reset HEAD
+```
+After that I run assume-unchanged again:
+
+```
+git update-index --assume-unchanged db.sqlite3
+```
 ---
 
 ## Validation:
