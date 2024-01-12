@@ -3,7 +3,7 @@
 - The app was deployed to [Heroku](https://www.heroku.com/).
 - The database was deployed to [ElephantSQL](https://www.elephantsql.com/).
 
-- The app can be reached by the [link](#).
+- The app can be reached by the [link](https://polish-restaurant1-c6e01ddf2452.herokuapp.com/).
 
 ## Local deployment
 

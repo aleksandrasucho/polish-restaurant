@@ -1,6 +1,6 @@
 # Polka Restaurant
 
-Live Version: [Polka Restaurant](#)
+Live Version: [Polka Restaurant](https://polish-restaurant1-c6e01ddf2452.herokuapp.com/)
 
 
 Repository: [GitHub Repo](https://github.com/aleksandrasucho/polish-restaurant)
@@ -191,7 +191,7 @@ Please refer to the [TESTING.md](TESTING.md) file for all test-related documenta
 - The app was deployed to [Heroku](https://www.heroku.com/).
 - The database was deployed to [ElephantSQL](https://www.elephantsql.com/).
 
-- The app can be reached by the [link](#).
+- The app can be reached by the [link](https://polish-restaurant1-c6e01ddf2452.herokuapp.com/).
 
 Please refer to the [DEPLOYMENT.md](DEPLOYMENT.md) file for all deployment-related documentation.
 
