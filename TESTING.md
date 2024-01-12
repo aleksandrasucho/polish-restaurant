@@ -230,3 +230,6 @@ Testing was conducted on the following browsers;
 - Chrome;
 - Firefox;
 
+# Responsiveness
+
+The responsiveness was checked manually by using devtools (Chrome) throughout the whole development.
