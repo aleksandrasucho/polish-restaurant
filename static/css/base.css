@@ -75,7 +75,7 @@ body {
 
 /* Primary button styling */
 .btn-primary {
-    background-color: #4CAF50; /* Change this color to your desired button color */
+    background-color: #4CAF50;
     color: white;
     font-weight: 600;
     border: none;
@@ -86,7 +86,7 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #45a049; /* Change this color for the hover effect */
+    background-color: #45a049;
 }
 
 /* Navbar styling */
@@ -589,18 +589,15 @@ form a:hover {
     
 }
 
-
 .password-reset-content h1 {
     font-size: 2.5rem;
-    color: #333; /* Adjust text color */
-    /* ... (other styles) */
+    color: #333;
 }
 
 .password-reset-content p {
     font-size: 1.2rem;
-    color: #555; /* Adjust text color */
+    color: #555;
     line-height: 1.6;
-    /* ... (other styles) */
 }
 
 .submit-res-btn {

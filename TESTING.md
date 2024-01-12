@@ -109,11 +109,11 @@ As a First Time Visitor, I want to be able to see the opening and closing hours 
 
 ### Known bugs
 When attempting to create an additional reservation while already in the "Your Reservations" section, the existing reservation is unintentionally deleted.
+1. I realized that my .gitiignore file was not ignoring the db.sqlite3 file, however, it was stating the .gitiignore fi
 
 ### Solved bugs
 
 There were plenty of bugs during the development process since this project was a learning platform for me and allowed me to improve my skills and knowledge significantly.
-
 
 1. Django Improperly Configured Error: I encountered the django.core.exceptions.ImproperlyConfigured: allauth.account.middleware.AccountMiddleware must be added to settings.MIDDLEWARE error.
 - *Solutions:* The issue has been addressed by adding allauth.account.middleware.AccountMiddleware to the settings.MIDDLEWARE as per the Django configuration requirements.
@@ -122,32 +122,8 @@ There were plenty of bugs during the development process since this project was 
 - *Solutions:* The issue has been resolved by investigating and fixing the underlying cause, allowing the Gunicorn server to start successfully.
 
 
-3. I realized that my .gitiignore file was not ignoring the db.sqlite3 file, however, it was stating the .gitiignore file 
-```python
-    *.sqlite3
-    db.sqlite3
-```
-*Solution:*
+le 
 
-At the very beginning, I used the following command:
-
-```
-git update-index --assume-unchanged db.sqlite3
-```
-
-But the output was: ```fatal: Unable to mark file db.sqlite3```
-
-So, I user the following command for reset:
-
-```
-git reset HEAD
-```
-After that I run assume-unchanged again:
-
-```
-git update-index --assume-unchanged db.sqlite3
-```
----
 
 ## Validation:
 ### HTML Validation:
@@ -156,11 +132,20 @@ git update-index --assume-unchanged db.sqlite3
 
 - No errors or warnings were found when passing through the official [W3C](https://validator.w3.org/) validator.
 
+The following pages have been tested:
+
+- Home: [Full HTML Validation Report](documentation/validation/html-validator.png)
+- Menu: [Full HTML Validation Report](documentation/validation/menu-validATION-HTML.png)
+- Book a Table: [Full HTML Validation Report](documentation/validation/book-a-table-html-validation.png)
+- Information: [Full HTML Validation Report](documentation/validation/info-html-validation.png)
+- Login/Register: [Full HTML Validation Report](documentation/validation/login-html-validation.png)
+- Log out: [Full HTML Validation Report](documentation/validation/logout-html-validation.png)
+
+
+
 ### CSS Validation:
 
-- [Full CSS Validation Report](documentation/validation
-
-- No errors or warnings were found when passing through the official [W3C (Jigsaw)](https://jigsaw.w3.org/css-validator/#validate_by_uri) validator except for the warnings about the use of css root variables and webkits for the box-shadow. However, css code works perfectly on various devices.
+- [Full CSS Validation Report](documentation/validation/css-validation.png)
 
 ### JS Validation:
 
